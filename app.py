@@ -1,3 +1,4 @@
+import base64
 import os
 import streamlit as st
 
@@ -61,6 +62,25 @@ st.markdown(
         margin-bottom: 1rem;
         color: #7a5a1e;
         font-size: 0.95rem;
+    }}
+
+    .pdf-button {{
+        display: block;
+        text-align: center;
+        background-color: white;
+        color: {NAVY} !important;
+        border: 2px solid {NAVY};
+        border-radius: 8px;
+        padding: 0.5rem 0.8rem;
+        margin-top: 0.4rem;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-decoration: none !important;
+        transition: background-color 0.15s ease;
+    }}
+    .pdf-button:hover {{
+        background-color: {NAVY};
+        color: white !important;
     }}
     </style>
     """,
@@ -136,14 +156,15 @@ for col, day in zip(cols, DAYS):
         guide_path = os.path.join(os.path.dirname(__file__), "assets", day["guide_file"])
         if os.path.exists(guide_path):
             with open(guide_path, "rb") as f:
-                st.download_button(
-                    label="📄 Observer Guide",
-                    data=f.read(),
-                    file_name=day["guide_file"],
-                    mime="application/pdf",
-                    use_container_width=True,
-                    key=f"guide_{day['label']}",
-                )
+                pdf_b64 = base64.b64encode(f.read()).decode()
+            st.markdown(
+                f"""
+                <a class="pdf-button" href="data:application/pdf;base64,{pdf_b64}" target="_blank">
+                📄 Open {day['label']} Observer Guide
+                </a>
+                """,
+                unsafe_allow_html=True,
+            )
         else:
             st.caption(f"📄 Observer Guide — coming soon (assets/{day['guide_file']})")
 
