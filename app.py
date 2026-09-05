@@ -92,25 +92,25 @@ DAYS = [
         label="Day 1",
         title="What Is Math?",
         desc="Observe a real object, then simulate an imagined object using geometric shapes on graph paper.",
-        page="pages/1_Day_1.py",
+        page="https://cpa-math6-day1.streamlit.app/",
     ),
     dict(
         label="Day 2",
         title="Getting to Know You: Data Reveal",
         desc="A real class-data opener (12 of 42), a confounding-variables talk, and five shape survey stations.",
-        page="pages/2_Day_2.py",
+        page="https://cpamathgrade6day2.streamlit.app/",
     ),
     dict(
         label="Day 3",
         title="Hear From Us: Skits & Focus",
         desc="A Human Bar Graph, classroom-behavior skits, and a Keep-or-Rid vote — no drawing today.",
-        page="pages/3_Day_3.py",
+        page="https://cpamathgrade6day3.streamlit.app/",
     ),
     dict(
         label="Day 4",
         title="Testing the Model",
         desc="First multi-board Engage/Explore/Enrich pilot with IXL.com, journaling, and 1-on-1 tutoring.",
-        page="pages/4_Day_4.py",
+        page="https://cpamathgrade6day4.streamlit.app/",
     ),
 ]
 
@@ -127,7 +127,7 @@ for col, day in zip(cols, DAYS):
             """,
             unsafe_allow_html=True,
         )
-        st.page_link(day["page"], label=f"Open {day['label']} →", icon="📂", use_container_width=True)
+        st.page_link(day["page"], label=f"Open {day['label']} →", icon="🔗", use_container_width=True)
 
 st.markdown("---")
 st.markdown("### 🗓️ School Calendar — Match a Lesson Day to a Real Date")
