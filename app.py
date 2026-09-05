@@ -12,6 +12,7 @@ st.set_page_config(
 NAVY = "#1F3864"
 GOLD = "#B08D57"
 CREAM = "#F2EFE9"
+MUTED = "#9C9284"
 
 st.markdown(
     f"""
@@ -33,16 +34,17 @@ st.markdown(
     .big-title {{ color: {NAVY}; font-size: 2rem; font-weight: 800; margin-bottom: 0.3rem; }}
     .sub-title {{ color: {GOLD}; font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }}
 
+    /* ---- Uniform day cards ---- */
     .day-card {{
         background-color: {CREAM};
         border: 2px solid {GOLD};
         border-radius: 12px;
-        padding: 1.5rem 1.6rem 0.7rem 1.6rem;
+        padding: 1.4rem 1.5rem;
         margin-bottom: 1rem;
-        height: 100%;
+        height: 420px;
+        display: flex;
+        flex-direction: column;
     }}
-    .day-card h3 {{ color: {NAVY}; margin: 0 0 0.4rem 0; }}
-    .day-card p {{ min-height: 3.6rem; font-size: 0.98rem; }}
     .day-pill {{
         display: inline-block;
         background-color: {NAVY};
@@ -52,6 +54,71 @@ st.markdown(
         padding: 0.15rem 0.7rem;
         border-radius: 999px;
         margin-bottom: 0.6rem;
+        width: fit-content;
+    }}
+    .day-card h3 {{
+        color: {NAVY};
+        margin: 0 0 0.5rem 0;
+        font-size: 1.2rem;
+        line-height: 1.3;
+        min-height: 3.1rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }}
+    .day-card p {{
+        margin: 0;
+        font-size: 0.95rem;
+        color: #3a3a3a;
+        line-height: 1.4;
+        flex: 1 1 auto;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }}
+    .day-card .btn-stack {{
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }}
+
+    .link-button, .pdf-button {{
+        display: block;
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: 8px;
+        padding: 0.5rem 0.8rem;
+        font-weight: 700;
+        font-size: 0.92rem;
+        text-decoration: none !important;
+        transition: background-color 0.15s ease, color 0.15s ease;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }}
+    .link-button {{
+        background-color: {NAVY};
+        color: white !important;
+        border: 2px solid {NAVY};
+    }}
+    .link-button:hover {{ background-color: #142544; border-color: #142544; }}
+
+    .pdf-button {{
+        background-color: white;
+        color: {NAVY} !important;
+        border: 2px solid {NAVY};
+    }}
+    .pdf-button:hover {{ background-color: {NAVY}; color: white !important; }}
+
+    .pdf-button.disabled {{
+        background-color: #ECEAE5;
+        color: {MUTED} !important;
+        border: 2px dashed #C9C2B6;
+        cursor: not-allowed;
+        pointer-events: none;
     }}
 
     .calendar-note {{
@@ -62,25 +129,6 @@ st.markdown(
         margin-bottom: 1rem;
         color: #7a5a1e;
         font-size: 0.95rem;
-    }}
-
-    .pdf-button {{
-        display: block;
-        text-align: center;
-        background-color: white;
-        color: {NAVY} !important;
-        border: 2px solid {NAVY};
-        border-radius: 8px;
-        padding: 0.5rem 0.8rem;
-        margin-top: 0.4rem;
-        font-weight: 700;
-        font-size: 0.95rem;
-        text-decoration: none !important;
-        transition: background-color 0.15s ease;
-    }}
-    .pdf-button:hover {{
-        background-color: {NAVY};
-        color: white !important;
     }}
     </style>
     """,
@@ -100,8 +148,9 @@ st.markdown(
 st.markdown('<div class="big-title">Welcome, Families and Students!</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-title">Professor Xavier Honablue, M.Ed.</div>', unsafe_allow_html=True)
 st.write(
-    "Click any day below to open that day's full lesson. Use the school calendar underneath to "
-    "match each lesson day to its actual calendar date."
+    "Click any day below to open that day's full lesson, or open the Observer Guide PDF to view it "
+    "right in your browser. Use the school calendar underneath to match each lesson day to its actual "
+    "calendar date."
 )
 
 st.markdown("---")
@@ -141,38 +190,40 @@ DAYS = [
 cols = st.columns(4)
 for col, day in zip(cols, DAYS):
     with col:
+        guide_path = os.path.join(os.path.dirname(__file__), "assets", day["guide_file"])
+        has_guide = os.path.exists(guide_path)
+
+        if has_guide:
+            with open(guide_path, "rb") as f:
+                pdf_b64 = base64.b64encode(f.read()).decode()
+            guide_button_html = (
+                f'<a class="pdf-button" href="data:application/pdf;base64,{pdf_b64}" '
+                f'target="_blank">📄 Observer Guide (PDF)</a>'
+            )
+        else:
+            guide_button_html = (
+                f'<span class="pdf-button disabled">📄 Guide — Coming Soon</span>'
+            )
+
         st.markdown(
             f"""
             <div class="day-card">
                 <span class="day-pill">{day['label']}</span>
                 <h3>{day['title']}</h3>
                 <p>{day['desc']}</p>
+                <div class="btn-stack">
+                    <a class="link-button" href="{day['page']}" target="_blank">🔗 Open {day['label']} →</a>
+                    {guide_button_html}
+                </div>
             </div>
             """,
             unsafe_allow_html=True,
         )
-        st.page_link(day["page"], label=f"Open {day['label']} →", icon="🔗", use_container_width=True)
-
-        guide_path = os.path.join(os.path.dirname(__file__), "assets", day["guide_file"])
-        if os.path.exists(guide_path):
-            with open(guide_path, "rb") as f:
-                pdf_b64 = base64.b64encode(f.read()).decode()
-            st.markdown(
-                f"""
-                <a class="pdf-button" href="data:application/pdf;base64,{pdf_b64}" target="_blank">
-                📄 Open {day['label']} Observer Guide
-                </a>
-                """,
-                unsafe_allow_html=True,
-            )
-        else:
-            st.caption(f"📄 Observer Guide — coming soon (assets/{day['guide_file']})")
 
 st.markdown("---")
 st.markdown("### 🗓️ School Calendar")
 
 CALENDAR_IMAGE_PATH = os.path.join(os.path.dirname(__file__), "assets", "school_calendar.png")
-
 if os.path.exists(CALENDAR_IMAGE_PATH):
     st.image(CALENDAR_IMAGE_PATH, use_container_width=True, caption="Chandler Park Academy District Calendar")
 else:
