@@ -93,24 +93,28 @@ DAYS = [
         title="What Is Math?",
         desc="Observe a real object, then simulate an imagined object using geometric shapes on graph paper.",
         page="https://cpa-math6-day1.streamlit.app/",
+        guide_file="Day1_Observer_Guide.pdf",
     ),
     dict(
         label="Day 2",
         title="Getting to Know You: Data Reveal",
         desc="A real class-data opener (12 of 42), a confounding-variables talk, and five shape survey stations.",
         page="https://cpamathgrade6day2.streamlit.app/",
+        guide_file="Day2_Observer_Guide.pdf",
     ),
     dict(
         label="Day 3",
         title="Hear From Us: Skits & Focus",
         desc="A Human Bar Graph, classroom-behavior skits, and a Keep-or-Rid vote — no drawing today.",
         page="https://cpamathgrade6day3.streamlit.app/",
+        guide_file="Day3_Observer_Guide.pdf",
     ),
     dict(
         label="Day 4",
         title="Testing the Model",
         desc="First multi-board Engage/Explore/Enrich pilot with IXL.com, journaling, and 1-on-1 tutoring.",
         page="https://cpamathgrade6day4.streamlit.app/",
+        guide_file="Day4_Observer_Guide.pdf",
     ),
 ]
 
@@ -129,8 +133,22 @@ for col, day in zip(cols, DAYS):
         )
         st.page_link(day["page"], label=f"Open {day['label']} →", icon="🔗", use_container_width=True)
 
+        guide_path = os.path.join(os.path.dirname(__file__), "assets", day["guide_file"])
+        if os.path.exists(guide_path):
+            with open(guide_path, "rb") as f:
+                st.download_button(
+                    label="📄 Observer Guide",
+                    data=f.read(),
+                    file_name=day["guide_file"],
+                    mime="application/pdf",
+                    use_container_width=True,
+                    key=f"guide_{day['label']}",
+                )
+        else:
+            st.caption(f"📄 Observer Guide — coming soon (assets/{day['guide_file']})")
+
 st.markdown("---")
-st.markdown("### 🗓️ School Calendar — Match a Lesson Day to a Real Date")
+st.markdown("### 🗓️ School Calendar")
 
 CALENDAR_IMAGE_PATH = os.path.join(os.path.dirname(__file__), "assets", "school_calendar.png")
 
@@ -141,32 +159,8 @@ else:
         """
         <div class="calendar-note">
         📌 The official school calendar will appear here once it's added to this project
-        (<code>assets/school_calendar.png</code>). Once it's in place, families will be able to scroll
-        down to see the real calendar directly under the lesson-day buttons above.
+        (<code>assets/school_calendar.png</code>).
         </div>
         """,
         unsafe_allow_html=True,
     )
-
-st.markdown("#### Day → Calendar Date Reference")
-st.caption("Fill in or update the dates below to match this year's actual teaching calendar.")
-
-ref_cols = st.columns(4)
-placeholder_dates = ["[date]", "[date]", "[date]", "[date]"]
-for col, day, date in zip(ref_cols, DAYS, placeholder_dates):
-    with col:
-        st.markdown(
-            f"""
-            <div class="day-card" style="text-align:center;">
-                <span class="day-pill">{day['label']}</span>
-                <h3 style="font-size:1.3rem;">{date}</h3>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-st.caption(
-    "Tell Professor Xavier's assistant the actual date for each lesson day, and this reference "
-    "row will be updated to match — or upload the school calendar and both sections can be filled "
-    "in together."
-)
