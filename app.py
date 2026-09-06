@@ -19,7 +19,6 @@ st.markdown(
     <style>
     .stApp {{ background-color: #FFFFFF; }}
     .block-container {{ padding-top: 2rem; padding-bottom: 3rem; max-width: 1200px; }}
-
     .mc-banner {{
         background: linear-gradient(135deg, {NAVY} 0%, #142544 100%);
         color: white;
@@ -30,10 +29,8 @@ st.markdown(
     }}
     .mc-banner h1 {{ margin: 0; font-size: 2.6rem; letter-spacing: 0.5px; }}
     .mc-banner p {{ margin: 0.4rem 0 0 0; opacity: 0.9; font-size: 1.15rem; }}
-
     .big-title {{ color: {NAVY}; font-size: 2rem; font-weight: 800; margin-bottom: 0.3rem; }}
     .sub-title {{ color: {GOLD}; font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }}
-
     /* ---- Uniform day cards ---- */
     .day-card {{
         background-color: {CREAM};
@@ -84,7 +81,6 @@ st.markdown(
         flex-direction: column;
         gap: 0.5rem;
     }}
-
     .link-button, .pdf-button {{
         display: block;
         box-sizing: border-box;
@@ -98,6 +94,7 @@ st.markdown(
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        cursor: pointer;
     }}
     .link-button {{
         background-color: {NAVY};
@@ -105,14 +102,12 @@ st.markdown(
         border: 2px solid {NAVY};
     }}
     .link-button:hover {{ background-color: #142544; border-color: #142544; }}
-
     .pdf-button {{
         background-color: white;
         color: {NAVY} !important;
         border: 2px solid {NAVY};
     }}
     .pdf-button:hover {{ background-color: {NAVY}; color: white !important; }}
-
     .pdf-button.disabled {{
         background-color: #ECEAE5;
         color: {MUTED} !important;
@@ -120,7 +115,6 @@ st.markdown(
         cursor: not-allowed;
         pointer-events: none;
     }}
-
     .calendar-note {{
         background-color: #FFF4E5;
         border-left: 6px solid {GOLD};
@@ -192,19 +186,33 @@ for col, day in zip(cols, DAYS):
     with col:
         guide_path = os.path.join(os.path.dirname(__file__), "assets", day["guide_file"])
         has_guide = os.path.exists(guide_path)
-
         if has_guide:
             with open(guide_path, "rb") as f:
                 pdf_b64 = base64.b64encode(f.read()).decode()
+            # NOTE: We deliberately do NOT use a plain
+            #   <a href="data:application/pdf;base64,...">
+            # link here. Chrome's built-in PDF viewer frequently renders a
+            # blank page when navigating directly to a data: URI PDF
+            # (especially for larger files). Converting the base64 payload
+            # into a Blob in the browser and opening that via
+            # URL.createObjectURL is the reliable way to get the PDF to
+            # actually display in a new tab.
             guide_button_html = (
-                f'<a class="pdf-button" href="data:application/pdf;base64,{pdf_b64}" '
-                f'target="_blank">📄 Observer Guide (PDF)</a>'
+                f'<a class="pdf-button" href="javascript:void(0)" '
+                f'onclick="'
+                f"var b64='{pdf_b64}';"
+                f"var raw=atob(b64);"
+                f"var bytes=new Uint8Array(raw.length);"
+                f"for(var i=0;i<raw.length;i++){{bytes[i]=raw.charCodeAt(i);}}"
+                f"var blob=new Blob([bytes],{{type:'application/pdf'}});"
+                f"var blobUrl=URL.createObjectURL(blob);"
+                f"window.open(blobUrl,'_blank');"
+                f'return false;">📄 Observer Guide (PDF)</a>'
             )
         else:
             guide_button_html = (
                 f'<span class="pdf-button disabled">📄 Guide — Coming Soon</span>'
             )
-
         st.markdown(
             f"""
             <div class="day-card">
