@@ -1,4 +1,3 @@
-import base64
 import os
 import streamlit as st
 
@@ -121,6 +120,32 @@ st.markdown(
         pointer-events: none;
     }}
 
+    /* ---- Native download button, styled to match .pdf-button ---- */
+    div[data-testid="stDownloadButton"] {{
+        margin-top: -0.9rem;
+        margin-bottom: 1rem;
+    }}
+    div[data-testid="stDownloadButton"] button {{
+        width: 100%;
+        background-color: white;
+        color: {NAVY};
+        border: 2px solid {NAVY};
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.92rem;
+        padding: 0.5rem 0.8rem;
+        transition: background-color 0.15s ease, color 0.15s ease;
+    }}
+    div[data-testid="stDownloadButton"] button:hover {{
+        background-color: {NAVY};
+        color: white;
+        border-color: {NAVY};
+    }}
+    div[data-testid="stDownloadButton"] button:focus:not(:active) {{
+        color: {NAVY};
+        border-color: {NAVY};
+    }}
+
     .calendar-note {{
         background-color: #FFF4E5;
         border-left: 6px solid {GOLD};
@@ -193,18 +218,6 @@ for col, day in zip(cols, DAYS):
         guide_path = os.path.join(os.path.dirname(__file__), "assets", day["guide_file"])
         has_guide = os.path.exists(guide_path)
 
-        if has_guide:
-            with open(guide_path, "rb") as f:
-                pdf_b64 = base64.b64encode(f.read()).decode()
-            guide_button_html = (
-                f'<a class="pdf-button" href="data:application/pdf;base64,{pdf_b64}" '
-                f'target="_blank">📄 Observer Guide (PDF)</a>'
-            )
-        else:
-            guide_button_html = (
-                f'<span class="pdf-button disabled">📄 Guide — Coming Soon</span>'
-            )
-
         st.markdown(
             f"""
             <div class="day-card">
@@ -213,12 +226,31 @@ for col, day in zip(cols, DAYS):
                 <p>{day['desc']}</p>
                 <div class="btn-stack">
                     <a class="link-button" href="{day['page']}" target="_blank">🔗 Open {day['label']} →</a>
-                    {guide_button_html}
                 </div>
             </div>
             """,
             unsafe_allow_html=True,
         )
+
+        # Rendered as a real Streamlit widget (not a raw <a href="data:...">)
+        # so the browser actually triggers a download instead of silently
+        # blocking the click, which is what a base64 data-URI anchor did.
+        if has_guide:
+            with open(guide_path, "rb") as f:
+                pdf_bytes = f.read()
+            st.download_button(
+                label="📄 Observer Guide (PDF)",
+                data=pdf_bytes,
+                file_name=day["guide_file"],
+                mime="application/pdf",
+                key=f"guide-{day['label']}",
+                use_container_width=True,
+            )
+        else:
+            st.markdown(
+                '<span class="pdf-button disabled">📄 Guide — Coming Soon</span>',
+                unsafe_allow_html=True,
+            )
 
 st.markdown("---")
 st.markdown("### 🗓️ School Calendar")
