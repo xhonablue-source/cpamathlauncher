@@ -178,6 +178,13 @@ DAYS = [
         page="https://cpamathgrade6day4.streamlit.app/",
         guide_file="Day4_Observer_Guide.pdf",
     ),
+    dict(
+        label="Day 5",
+        title="Area Is Multiplication",
+        desc="First grade-level content day: rectangle area taught alongside two-digit multiplication, using a Nerf dart board to generate dimensions.",
+        page="https://cpamath6day5.streamlit.app/",
+        guide_file="Day5_Observer_Guide.pdf",
+    ),
 ]
 
 # PDFs live in ./static/ and are served directly by Streamlit at app/static/<file>
@@ -186,7 +193,7 @@ DAYS = [
 # the base64 approach breaks Streamlit's React click handling and silently fails.
 STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
 
-cols = st.columns(4)
+cols = st.columns(len(DAYS))
 for col, day in zip(cols, DAYS):
     with col:
         guide_path = os.path.join(STATIC_DIR, day["guide_file"])
