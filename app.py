@@ -1,4 +1,3 @@
-import base64
 import os
 import streamlit as st
 
@@ -181,37 +180,25 @@ DAYS = [
     ),
 ]
 
+# PDFs live in ./static/ and are served directly by Streamlit at app/static/<file>
+# (requires [server] enableStaticServing = true in .streamlit/config.toml).
+# A plain <a href> to that URL is used instead of a base64/Blob "onclick" trick —
+# the base64 approach breaks Streamlit's React click handling and silently fails.
+STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
+
 cols = st.columns(4)
 for col, day in zip(cols, DAYS):
     with col:
-        guide_path = os.path.join(os.path.dirname(__file__), "assets", day["guide_file"])
+        guide_path = os.path.join(STATIC_DIR, day["guide_file"])
         has_guide = os.path.exists(guide_path)
         if has_guide:
-            with open(guide_path, "rb") as f:
-                pdf_b64 = base64.b64encode(f.read()).decode()
-            # NOTE: We deliberately do NOT use a plain
-            #   <a href="data:application/pdf;base64,...">
-            # link here. Chrome's built-in PDF viewer frequently renders a
-            # blank page when navigating directly to a data: URI PDF
-            # (especially for larger files). Converting the base64 payload
-            # into a Blob in the browser and opening that via
-            # URL.createObjectURL is the reliable way to get the PDF to
-            # actually display in a new tab.
             guide_button_html = (
-                f'<a class="pdf-button" href="javascript:void(0)" '
-                f'onclick="'
-                f"var b64='{pdf_b64}';"
-                f"var raw=atob(b64);"
-                f"var bytes=new Uint8Array(raw.length);"
-                f"for(var i=0;i<raw.length;i++){{bytes[i]=raw.charCodeAt(i);}}"
-                f"var blob=new Blob([bytes],{{type:'application/pdf'}});"
-                f"var blobUrl=URL.createObjectURL(blob);"
-                f"window.open(blobUrl,'_blank');"
-                f'return false;">📄 Observer Guide (PDF)</a>'
+                f'<a class="pdf-button" href="app/static/{day["guide_file"]}" '
+                f'target="_blank" rel="noopener noreferrer">📄 Observer Guide (PDF)</a>'
             )
         else:
             guide_button_html = (
-                f'<span class="pdf-button disabled">📄 Guide — Coming Soon</span>'
+                '<span class="pdf-button disabled">📄 Guide — Coming Soon</span>'
             )
         st.markdown(
             f"""
