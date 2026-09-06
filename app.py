@@ -18,7 +18,6 @@ st.markdown(
     <style>
     .stApp {{ background-color: #FFFFFF; }}
     .block-container {{ padding-top: 2rem; padding-bottom: 3rem; max-width: 1200px; }}
-
     .mc-banner {{
         background: linear-gradient(135deg, {NAVY} 0%, #142544 100%);
         color: white;
@@ -29,10 +28,8 @@ st.markdown(
     }}
     .mc-banner h1 {{ margin: 0; font-size: 2.6rem; letter-spacing: 0.5px; }}
     .mc-banner p {{ margin: 0.4rem 0 0 0; opacity: 0.9; font-size: 1.15rem; }}
-
     .big-title {{ color: {NAVY}; font-size: 2rem; font-weight: 800; margin-bottom: 0.3rem; }}
     .sub-title {{ color: {GOLD}; font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }}
-
     /* ---- Uniform day cards ---- */
     .day-card {{
         background-color: {CREAM};
@@ -83,7 +80,6 @@ st.markdown(
         flex-direction: column;
         gap: 0.5rem;
     }}
-
     .link-button, .pdf-button {{
         display: block;
         box-sizing: border-box;
@@ -97,6 +93,7 @@ st.markdown(
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        cursor: pointer;
     }}
     .link-button {{
         background-color: {NAVY};
@@ -104,14 +101,12 @@ st.markdown(
         border: 2px solid {NAVY};
     }}
     .link-button:hover {{ background-color: #142544; border-color: #142544; }}
-
     .pdf-button {{
         background-color: white;
         color: {NAVY} !important;
         border: 2px solid {NAVY};
     }}
     .pdf-button:hover {{ background-color: {NAVY}; color: white !important; }}
-
     .pdf-button.disabled {{
         background-color: #ECEAE5;
         color: {MUTED} !important;
@@ -119,7 +114,6 @@ st.markdown(
         cursor: not-allowed;
         pointer-events: none;
     }}
-
     /* ---- Native download button, styled to match .pdf-button ---- */
     div[data-testid="stDownloadButton"] {{
         margin-top: -0.9rem;
@@ -145,7 +139,6 @@ st.markdown(
         color: {NAVY};
         border-color: {NAVY};
     }}
-
     .calendar-note {{
         background-color: #FFF4E5;
         border-left: 6px solid {GOLD};
@@ -217,7 +210,6 @@ for col, day in zip(cols, DAYS):
     with col:
         guide_path = os.path.join(os.path.dirname(__file__), "assets", day["guide_file"])
         has_guide = os.path.exists(guide_path)
-
         st.markdown(
             f"""
             <div class="day-card">
