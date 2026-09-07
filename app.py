@@ -12,6 +12,7 @@ NAVY = "#1F3864"
 GOLD = "#B08D57"
 CREAM = "#F2EFE9"
 MUTED = "#9C9284"
+GREEN = "#3C8B5D"
 
 st.markdown(
     f"""
@@ -80,7 +81,7 @@ st.markdown(
         flex-direction: column;
         gap: 0.5rem;
     }}
-    .link-button, .pdf-button, .hmwk-button {{
+    .link-button, .pdf-button, .worksheet-button, .hmwk-button {{
         display: block;
         box-sizing: border-box;
         text-align: center;
@@ -114,6 +115,12 @@ st.markdown(
         cursor: not-allowed;
         pointer-events: none;
     }}
+    .worksheet-button {{
+        background-color: white;
+        color: {GREEN} !important;
+        border: 2px solid {GREEN};
+    }}
+    .worksheet-button:hover {{ background-color: {GREEN}; color: white !important; }}
     .hmwk-button {{
         background-color: {GOLD};
         color: white !important;
@@ -198,6 +205,8 @@ DAYS = [
         desc="First grade-level content day: rectangle area taught alongside two-digit multiplication, using a Nerf dart board to generate dimensions.",
         page="https://cpamath6day5.streamlit.app/",
         guide_file="Day5_Observer_Guide.pdf",
+        worksheet_file="wksht.pdf",
+        worksheet_label="Classwork Worksheet (wksht)",
         hmwk_url="https://www.ixl.com/math/grade-6/area-of-rectangles-and-squares",
         hmwk_label="HMWK: Earn 90% on GG.2 (IXL, 6th grade)",
     ),
@@ -209,6 +218,10 @@ DAYS = [
 # target (e.g. "HMWK: Earn 90% on GG.2 (IXL, 6th grade)") instead of the
 # generic "HMWK (IXL.com)" text. Days before Day 5 are intro/pilot days and
 # intentionally have no homework link.
+#
+# A lesson dict may also include "worksheet_file" (a PDF in ./static/) to show
+# a 📝 Classwork Worksheet button — it renders above the HMWK button on that
+# day's card. Optionally add "worksheet_label" to customize its text.
 #
 # Shared family login for IXL — only needed if a parent doesn't have their own
 # student's IXL account and must borrow the class account to complete homework.
@@ -238,6 +251,17 @@ for col, day in zip(cols, DAYS):
             guide_button_html = (
                 '<span class="pdf-button disabled">📄 Guide — Coming Soon</span>'
             )
+
+        worksheet_file = day.get("worksheet_file")
+        if worksheet_file and os.path.exists(os.path.join(STATIC_DIR, worksheet_file)):
+            worksheet_label = day.get("worksheet_label", "Classwork Worksheet")
+            worksheet_button_html = (
+                f'<a class="worksheet-button" href="app/static/{worksheet_file}" '
+                f'target="_blank" rel="noopener noreferrer">📝 {worksheet_label}</a>'
+            )
+        else:
+            worksheet_button_html = ""
+
         hmwk_url = day.get("hmwk_url")
         if hmwk_url:
             hmwk_label = day.get("hmwk_label", "HMWK (IXL.com)")
@@ -251,16 +275,16 @@ for col, day in zip(cols, DAYS):
         else:
             hmwk_button_html = ""
         # NOTE: btn_stack_html is built as one joined string (no blank lines
-        # between pieces). When hmwk_button_html is "", leaving it on its own
-        # line inside the triple-quoted block below creates a whitespace-only
+        # between pieces). When a piece is "", leaving it on its own line
+        # inside the triple-quoted block below creates a whitespace-only
         # line, which ends the raw-HTML block early (CommonMark's blank-line
         # rule) and leaks a literal "</div>" onto the page for every day
-        # without a homework link. Joining on one line avoids that.
+        # missing that piece. Joining on one line avoids that.
         link_button_html = (
             f'<a class="link-button" href="{day["page"]}" target="_blank">'
             f'🔗 Open {day["label"]} →</a>'
         )
-        btn_stack_html = link_button_html + guide_button_html + hmwk_button_html
+        btn_stack_html = link_button_html + guide_button_html + worksheet_button_html + hmwk_button_html
         st.markdown(
             f"""
             <div class="day-card">
