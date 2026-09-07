@@ -229,7 +229,7 @@ IXL_PARENT_LOGIN_NOTE = "Parents borrowing the class login: Username bethuneacad
 
 # All homework, whether or not it's practiced on IXL, still has to be shown
 # on paper — IXL is for practice/scoring, the notebook is the record of work.
-HMWK_INSTRUCTIONS = "Show ALL work by hand — pencil and paper, written out in your math notebook."
+HMWK_INSTRUCTIONS = "Show ALL work by hand — pencil and paper (graph paper is best), written out in your math notebook."
 
 # PDFs live in ./static/ and are served directly by Streamlit at app/static/<file>
 # (requires [server] enableStaticServing = true in .streamlit/config.toml).
