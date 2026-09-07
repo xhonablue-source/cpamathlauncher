@@ -37,7 +37,7 @@ st.markdown(
         border-radius: 12px;
         padding: 1.4rem 1.5rem;
         margin-bottom: 1rem;
-        height: 420px;
+        height: 560px;
         display: flex;
         flex-direction: column;
     }}
@@ -80,7 +80,7 @@ st.markdown(
         flex-direction: column;
         gap: 0.5rem;
     }}
-    .link-button, .pdf-button {{
+    .link-button, .pdf-button, .hmwk-button {{
         display: block;
         box-sizing: border-box;
         text-align: center;
@@ -113,6 +113,20 @@ st.markdown(
         border: 2px dashed #C9C2B6;
         cursor: not-allowed;
         pointer-events: none;
+    }}
+    .hmwk-button {{
+        background-color: {GOLD};
+        color: white !important;
+        border: 2px solid {GOLD};
+    }}
+    .hmwk-button:hover {{ background-color: #96754A; border-color: #96754A; }}
+    .hmwk-note {{
+        display: block;
+        font-size: 0.72rem;
+        color: {MUTED};
+        margin-top: 0.25rem;
+        line-height: 1.3;
+        white-space: normal;
     }}
     .calendar-note {{
         background-color: #FFF4E5;
@@ -184,8 +198,25 @@ DAYS = [
         desc="First grade-level content day: rectangle area taught alongside two-digit multiplication, using a Nerf dart board to generate dimensions.",
         page="https://cpamath6day5.streamlit.app/",
         guide_file="Day5_Observer_Guide.pdf",
+        hmwk_url="https://www.ixl.com/math/grade-6/area-of-rectangles-and-squares",
+        hmwk_label="HMWK: Earn 90% on GG.2 (IXL, 6th grade)",
     ),
 ]
+
+# Starting with Day 5 (the first grade-level content day), each lesson dict above
+# should include an "hmwk_url" pointing to the matching IXL.com skill so a
+# 📝 HMWK button appears on its card. Optionally add "hmwk_label" to state the
+# target (e.g. "HMWK: Earn 90% on GG.2 (IXL, 6th grade)") instead of the
+# generic "HMWK (IXL.com)" text. Days before Day 5 are intro/pilot days and
+# intentionally have no homework link.
+#
+# Shared family login for IXL — only needed if a parent doesn't have their own
+# student's IXL account and must borrow the class account to complete homework.
+IXL_PARENT_LOGIN_NOTE = "Parents borrowing the class login: Username bethuneacademy · Password BrightFuture2020"
+
+# All homework, whether or not it's practiced on IXL, still has to be shown
+# on paper — IXL is for practice/scoring, the notebook is the record of work.
+HMWK_INSTRUCTIONS = "Show ALL work by hand — pencil and paper, written out in your math notebook."
 
 # PDFs live in ./static/ and are served directly by Streamlit at app/static/<file>
 # (requires [server] enableStaticServing = true in .streamlit/config.toml).
@@ -207,6 +238,18 @@ for col, day in zip(cols, DAYS):
             guide_button_html = (
                 '<span class="pdf-button disabled">📄 Guide — Coming Soon</span>'
             )
+        hmwk_url = day.get("hmwk_url")
+        if hmwk_url:
+            hmwk_label = day.get("hmwk_label", "HMWK (IXL.com)")
+            hmwk_tooltip = f"{HMWK_INSTRUCTIONS}&#10;{IXL_PARENT_LOGIN_NOTE}"
+            hmwk_button_html = (
+                f'<a class="hmwk-button" href="{hmwk_url}" target="_blank" '
+                f'rel="noopener noreferrer" title="{hmwk_tooltip}">📝 {hmwk_label}</a>'
+                f'<span class="hmwk-note">✏️ {HMWK_INSTRUCTIONS}</span>'
+                f'<span class="hmwk-note">{IXL_PARENT_LOGIN_NOTE}</span>'
+            )
+        else:
+            hmwk_button_html = ""
         st.markdown(
             f"""
             <div class="day-card">
@@ -216,6 +259,7 @@ for col, day in zip(cols, DAYS):
                 <div class="btn-stack">
                     <a class="link-button" href="{day['page']}" target="_blank">🔗 Open {day['label']} →</a>
                     {guide_button_html}
+                    {hmwk_button_html}
                 </div>
             </div>
             """,
