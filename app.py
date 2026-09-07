@@ -250,17 +250,24 @@ for col, day in zip(cols, DAYS):
             )
         else:
             hmwk_button_html = ""
+        # NOTE: btn_stack_html is built as one joined string (no blank lines
+        # between pieces). When hmwk_button_html is "", leaving it on its own
+        # line inside the triple-quoted block below creates a whitespace-only
+        # line, which ends the raw-HTML block early (CommonMark's blank-line
+        # rule) and leaks a literal "</div>" onto the page for every day
+        # without a homework link. Joining on one line avoids that.
+        link_button_html = (
+            f'<a class="link-button" href="{day["page"]}" target="_blank">'
+            f'🔗 Open {day["label"]} →</a>'
+        )
+        btn_stack_html = link_button_html + guide_button_html + hmwk_button_html
         st.markdown(
             f"""
             <div class="day-card">
                 <span class="day-pill">{day['label']}</span>
                 <h3>{day['title']}</h3>
                 <p>{day['desc']}</p>
-                <div class="btn-stack">
-                    <a class="link-button" href="{day['page']}" target="_blank">🔗 Open {day['label']} →</a>
-                    {guide_button_html}
-                    {hmwk_button_html}
-                </div>
+                <div class="btn-stack">{btn_stack_html}</div>
             </div>
             """,
             unsafe_allow_html=True,
