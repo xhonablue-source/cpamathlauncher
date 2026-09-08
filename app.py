@@ -210,6 +210,17 @@ DAYS = [
         hmwk_url="https://www.ixl.com/math/grade-6/area-of-rectangles-and-squares",
         hmwk_label="HMWK: Earn 90% on GG.2 (IXL, 6th grade)",
     ),
+    dict(
+            label="Day 6",
+            title="Area Unlocks the Missing Side",
+            desc="Square vs. rectangle repair, then area runs in reverse: given the area and one side, find the missing side, and split an L-shaped floor into two rectangles.",
+            page="https://cpamath6day6.streamlit.app/",
+            guide_file="Day6_Observer_Guide.pdf",
+            worksheet_file="Day6_wksht.pdf",
+            worksheet_label="Classwork Worksheet (Day 6 wksht)",
+            hmwk_url="https://www.ixl.com/math/grade-6/area-of-rectangles-and-squares",
+            hmwk_label="HMWK: Earn 90% on GG.2 (IXL, 6th grade)",
+    ),
 ]
 
 # Starting with Day 5 (the first grade-level content day), each lesson dict above
