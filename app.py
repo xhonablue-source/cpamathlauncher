@@ -259,65 +259,74 @@ HMWK_INSTRUCTIONS = "Show ALL work by hand — pencil and paper (graph paper is 
 # the base64 approach breaks Streamlit's React click handling and silently fails.
 STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
 
-cols = st.columns(len(DAYS))
-for col, day in zip(cols, DAYS):
-    with col:
-        guide_path = os.path.join(STATIC_DIR, day["guide_file"])
-        has_guide = os.path.exists(guide_path)
-        if has_guide:
-            guide_button_html = (
-                f'<a class="pdf-button" href="app/static/{day["guide_file"]}" '
-                f'target="_blank" rel="noopener noreferrer">📄 Observer Guide (PDF)</a>'
-            )
-        else:
-            guide_button_html = (
-                '<span class="pdf-button disabled">📄 Guide — Coming Soon</span>'
-            )
+# Cards wrap onto new rows instead of squeezing every day into one row —
+# with 7+ lesson days, one giant row of equal-width st.columns() made each
+# card too narrow for its own button labels and the HMWK note to fit,
+# forcing ugly text wrapping and ellipsis-truncated buttons. Chunking into
+# fixed-size rows keeps each card a readable width no matter how many
+# lesson days get added over the course of the year.
+CARDS_PER_ROW = 4
+for row_start in range(0, len(DAYS), CARDS_PER_ROW):
+    row_days = DAYS[row_start:row_start + CARDS_PER_ROW]
+    cols = st.columns(CARDS_PER_ROW)
+    for col, day in zip(cols, row_days):
+        with col:
+            guide_path = os.path.join(STATIC_DIR, day["guide_file"])
+            has_guide = os.path.exists(guide_path)
+            if has_guide:
+                guide_button_html = (
+                    f'<a class="pdf-button" href="app/static/{day["guide_file"]}" '
+                    f'target="_blank" rel="noopener noreferrer">📄 Observer Guide (PDF)</a>'
+                )
+            else:
+                guide_button_html = (
+                    '<span class="pdf-button disabled">📄 Guide — Coming Soon</span>'
+                )
 
-        worksheet_file = day.get("worksheet_file")
-        if worksheet_file and os.path.exists(os.path.join(STATIC_DIR, worksheet_file)):
-            worksheet_label = day.get("worksheet_label", "Classwork Worksheet")
-            worksheet_button_html = (
-                f'<a class="worksheet-button" href="app/static/{worksheet_file}" '
-                f'target="_blank" rel="noopener noreferrer">📝 {worksheet_label}</a>'
-            )
-        else:
-            worksheet_button_html = ""
+            worksheet_file = day.get("worksheet_file")
+            if worksheet_file and os.path.exists(os.path.join(STATIC_DIR, worksheet_file)):
+                worksheet_label = day.get("worksheet_label", "Classwork Worksheet")
+                worksheet_button_html = (
+                    f'<a class="worksheet-button" href="app/static/{worksheet_file}" '
+                    f'target="_blank" rel="noopener noreferrer">📝 {worksheet_label}</a>'
+                )
+            else:
+                worksheet_button_html = ""
 
-        hmwk_url = day.get("hmwk_url")
-        if hmwk_url:
-            hmwk_label = day.get("hmwk_label", "HMWK (IXL.com)")
-            hmwk_tooltip = f"{HMWK_INSTRUCTIONS}&#10;{IXL_PARENT_LOGIN_NOTE}"
-            hmwk_button_html = (
-                f'<a class="hmwk-button" href="{hmwk_url}" target="_blank" '
-                f'rel="noopener noreferrer" title="{hmwk_tooltip}">📝 {hmwk_label}</a>'
-                f'<span class="hmwk-note">✏️ {HMWK_INSTRUCTIONS}</span>'
-                f'<span class="hmwk-note">{IXL_PARENT_LOGIN_NOTE}</span>'
+            hmwk_url = day.get("hmwk_url")
+            if hmwk_url:
+                hmwk_label = day.get("hmwk_label", "HMWK (IXL.com)")
+                hmwk_tooltip = f"{HMWK_INSTRUCTIONS}&#10;{IXL_PARENT_LOGIN_NOTE}"
+                hmwk_button_html = (
+                    f'<a class="hmwk-button" href="{hmwk_url}" target="_blank" '
+                    f'rel="noopener noreferrer" title="{hmwk_tooltip}">📝 {hmwk_label}</a>'
+                    f'<span class="hmwk-note">✏️ {HMWK_INSTRUCTIONS}</span>'
+                    f'<span class="hmwk-note">{IXL_PARENT_LOGIN_NOTE}</span>'
+                )
+            else:
+                hmwk_button_html = ""
+            # NOTE: btn_stack_html is built as one joined string (no blank lines
+            # between pieces). When a piece is "", leaving it on its own line
+            # inside the triple-quoted block below creates a whitespace-only
+            # line, which ends the raw-HTML block early (CommonMark's blank-line
+            # rule) and leaks a literal "</div>" onto the page for every day
+            # missing that piece. Joining on one line avoids that.
+            link_button_html = (
+                f'<a class="link-button" href="{day["page"]}" target="_blank">'
+                f'🔗 Open {day["label"]} →</a>'
             )
-        else:
-            hmwk_button_html = ""
-        # NOTE: btn_stack_html is built as one joined string (no blank lines
-        # between pieces). When a piece is "", leaving it on its own line
-        # inside the triple-quoted block below creates a whitespace-only
-        # line, which ends the raw-HTML block early (CommonMark's blank-line
-        # rule) and leaks a literal "</div>" onto the page for every day
-        # missing that piece. Joining on one line avoids that.
-        link_button_html = (
-            f'<a class="link-button" href="{day["page"]}" target="_blank">'
-            f'🔗 Open {day["label"]} →</a>'
-        )
-        btn_stack_html = link_button_html + guide_button_html + worksheet_button_html + hmwk_button_html
-        st.markdown(
-            f"""
-            <div class="day-card">
-                <span class="day-pill">{day['label']}</span>
-                <h3>{day['title']}</h3>
-                <p>{day['desc']}</p>
-                <div class="btn-stack">{btn_stack_html}</div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+            btn_stack_html = link_button_html + guide_button_html + worksheet_button_html + hmwk_button_html
+            st.markdown(
+                f"""
+                <div class="day-card">
+                    <span class="day-pill">{day['label']}</span>
+                    <h3>{day['title']}</h3>
+                    <p>{day['desc']}</p>
+                    <div class="btn-stack">{btn_stack_html}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
 
 st.markdown("---")
 st.markdown("### 🗓️ School Calendar")
