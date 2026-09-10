@@ -232,6 +232,17 @@ DAYS = [
         hmwk_url="https://www.ixl.com/math/grade-6/area-of-compound-figures",
         hmwk_label="HMWK: Earn 90% on GG.11 (IXL, 6th grade)",
     ),
+    dict(
+        label="Day 8",
+        title="Area of a Parallelogram",
+        desc="Cut a triangle off one end of a leaning parallelogram and slide it to the other end — it becomes a rectangle with the exact same base and height, so Area = base × height.",
+        page="https://cpamath6day8.streamlit.app/",
+        guide_file="Day8_Observer_Guide.pdf",
+        worksheet_file="Day8_wksht.pdf",
+        worksheet_label="Classwork Worksheet (Day 8 wksht)",
+        hmwk_url="https://www.ixl.com/math/grade-6/area-of-parallelograms",
+        hmwk_label="HMWK: Earn 90% on GG.4 (IXL, 6th grade)",
+    ),
 ]
 
 # Starting with Day 5 (the first grade-level content day), each lesson dict above
