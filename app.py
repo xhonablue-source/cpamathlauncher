@@ -221,6 +221,17 @@ DAYS = [
             hmwk_url="https://www.ixl.com/math/grade-6/area-of-rectangles-and-squares",
             hmwk_label="HMWK: Earn 90% on GG.2 (IXL, 6th grade)",
     ),
+    dict(
+        label="Day 7",
+        title="Area of Compound Rectangles",
+        desc="Split an L-shaped floor into two rectangles and add, or enclose it in one rectangle and subtract the missing piece — then apply both moves to a trickier T-shape.",
+        page="https://cpamath6day7.streamlit.app/",
+        guide_file="Day7_Observer_Guide.pdf",
+        worksheet_file="Day7_wksht.pdf",
+        worksheet_label="Classwork Worksheet (Day 7 wksht)",
+        hmwk_url="https://www.ixl.com/math/grade-6/area-of-compound-figures",
+        hmwk_label="HMWK: Earn 90% on GG.11 (IXL, 6th grade)",
+    ),
 ]
 
 # Starting with Day 5 (the first grade-level content day), each lesson dict above
