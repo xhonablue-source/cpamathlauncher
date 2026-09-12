@@ -243,6 +243,17 @@ DAYS = [
         hmwk_url="https://www.ixl.com/math/grade-6/area-of-parallelograms",
         hmwk_label="HMWK: Earn 90% on GG.4 (IXL, 6th grade)",
     ),
+    dict(
+        label="Day 9",
+        title="Area of a Parallelogram — Refine, Practice & Quiz",
+        desc="Finish Apply It, work through Refine (including a student's real base-times-slant mistake), Additional Practice, and the full Lesson 1 Quiz.",
+        page="https://cpamath6day9.streamlit.app/",
+        guide_file="Day9_Observer_Guide.pdf",
+        worksheet_file="Day9_wksht.pdf",
+        worksheet_label="Classwork Worksheet (Day 9 wksht)",
+        hmwk_url="https://www.ixl.com/math/grade-6/area-of-parallelograms",
+        hmwk_label="HMWK: Earn 90% on GG.4 (IXL, 6th grade)",
+    ),
 ]
 
 # Starting with Day 5 (the first grade-level content day), each lesson dict above
