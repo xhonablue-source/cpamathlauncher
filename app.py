@@ -323,10 +323,6 @@ DAYS = [
 # a 📝 Classwork Worksheet button — it renders above the HMWK button on that
 # day's card. Optionally add "worksheet_label" to customize its text.
 #
-# Shared family login for IXL — only needed if a parent doesn't have their own
-# student's IXL account and must borrow the class account to complete homework.
-IXL_PARENT_LOGIN_NOTE = "Parents borrowing the class login: Username bethuneacademy · Password BrightFuture2020"
-
 # All homework, whether or not it's practiced on IXL, still has to be shown
 # on paper — IXL is for practice/scoring, the notebook is the record of work.
 HMWK_INSTRUCTIONS = "Show ALL work by hand — pencil and paper (graph paper is best), written out in your math notebook."
@@ -374,12 +370,11 @@ for row_start in range(0, len(DAYS), CARDS_PER_ROW):
             hmwk_url = day.get("hmwk_url")
             if hmwk_url:
                 hmwk_label = day.get("hmwk_label", "HMWK (IXL.com)")
-                hmwk_tooltip = f"{HMWK_INSTRUCTIONS}&#10;{IXL_PARENT_LOGIN_NOTE}"
+                hmwk_tooltip = HMWK_INSTRUCTIONS
                 hmwk_button_html = (
                     f'<a class="hmwk-button" href="{hmwk_url}" target="_blank" '
                     f'rel="noopener noreferrer" title="{hmwk_tooltip}">📝 {hmwk_label}</a>'
                     f'<span class="hmwk-note">✏️ {HMWK_INSTRUCTIONS}</span>'
-                    f'<span class="hmwk-note">{IXL_PARENT_LOGIN_NOTE}</span>'
                 )
             else:
                 hmwk_button_html = ""
