@@ -254,6 +254,15 @@ DAYS = [
         hmwk_url="https://www.ixl.com/math/grade-6/area-of-parallelograms",
         hmwk_label="HMWK: Earn 90% on GG.4 (IXL, 6th grade)",
     ),
+    dict(
+        label="Day 10",
+        title="Skill Breakout — Multiplying Decimals & Fractions",
+        desc="Two prerequisite-skill reviews before Percent of a Quantity: multiplying decimals and multiplying fractions, proving both are the same function wearing different notation, plus percent-flavored practice and two common-mistake traps.",
+        page="https://cpamath6day10.streamlit.app/",
+        guide_file="Day10_Observer_Guide.pdf",
+        hmwk_url="https://www.ixl.com/math/grade-6/percents-of-numbers-word-problems",
+        hmwk_label="HMWK: Percents of Numbers — Word Problems (IXL, 6th grade)",
+    ),
 ]
 
 # Starting with Day 5 (the first grade-level content day), each lesson dict above
