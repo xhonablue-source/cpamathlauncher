@@ -14,6 +14,10 @@ CREAM = "#F2EFE9"
 MUTED = "#9C9284"
 GREEN = "#3C8B5D"
 
+# URL of the standalone Summative Test Sessions app (see SETUP.md in that
+# app's repo for deployment steps). Update this once it's deployed.
+SUMMATIVE_TESTS_URL = "https://cpamath-summative-tests.streamlit.app/"
+
 st.markdown(
     f"""
     <style>
@@ -168,6 +172,22 @@ st.write(
 )
 
 st.markdown("---")
+
+st.markdown(
+    f"""
+    <a href="{SUMMATIVE_TESTS_URL}" target="_blank" rel="noopener noreferrer"
+       style="display:block;text-align:center;background-color:{GOLD};color:white;
+              font-weight:800;font-size:1.15rem;padding:1rem 1.5rem;border-radius:12px;
+              text-decoration:none;margin-bottom:1.2rem;border:2px solid {GOLD};">
+        📝 Open Summative Test Sessions →
+    </a>
+    <p style="text-align:center;color:{MUTED};font-size:0.85rem;margin-top:-0.8rem;margin-bottom:1.5rem;">
+        30-day summative checks, autograded instantly, with teacher results dashboards.
+    </p>
+    """,
+    unsafe_allow_html=True,
+)
+
 st.markdown("### 📅 Lessons by Day")
 
 DAYS = [
