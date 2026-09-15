@@ -143,6 +143,7 @@ st.markdown(
     div[data-testid="stDownloadButton"] button:focus:not(:active) {{
         color: {NAVY};
         border-color: {NAVY};
+    }}
     .worksheet-button {{
         background-color: white;
         color: {GREEN} !important;
@@ -404,27 +405,6 @@ for row_start in range(0, len(DAYS), CARDS_PER_ROW):
                 """,
                 unsafe_allow_html=True,
             )
-
-        # Rendered as a real Streamlit widget (not a raw <a href="data:...">)
-        # so the browser actually triggers a download instead of silently
-        # blocking the click, which is what a base64 data-URI anchor did.
-        if has_guide:
-            with open(guide_path, "rb") as f:
-                pdf_bytes = f.read()
-            st.download_button(
-                label="📄 Observer Guide (PDF)",
-                data=pdf_bytes,
-                file_name=day["guide_file"],
-                mime="application/pdf",
-                key=f"guide-{day['label']}",
-                use_container_width=True,
-            )
-        else:
-            st.markdown(
-                '<span class="pdf-button disabled">📄 Guide — Coming Soon</span>',
-                unsafe_allow_html=True,
-            )
-
 st.markdown("---")
 st.markdown("### 🗓️ School Calendar")
 
