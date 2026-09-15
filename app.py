@@ -12,6 +12,11 @@ NAVY = "#1F3864"
 GOLD = "#B08D57"
 CREAM = "#F2EFE9"
 MUTED = "#9C9284"
+GREEN = "#3C8B5D"
+
+# URL of the standalone Summative Test Sessions app (see SETUP.md in that
+# app's repo for deployment steps). Update this once it's deployed.
+SUMMATIVE_TESTS_URL = "https://cpamath-summative-tests.streamlit.app/"
 
 st.markdown(
     f"""
@@ -37,7 +42,7 @@ st.markdown(
         border-radius: 12px;
         padding: 1.4rem 1.5rem;
         margin-bottom: 1rem;
-        height: 420px;
+        height: 560px;
         display: flex;
         flex-direction: column;
     }}
@@ -80,7 +85,7 @@ st.markdown(
         flex-direction: column;
         gap: 0.5rem;
     }}
-    .link-button, .pdf-button {{
+    .link-button, .pdf-button, .worksheet-button, .hmwk-button {{
         display: block;
         box-sizing: border-box;
         text-align: center;
@@ -138,6 +143,25 @@ st.markdown(
     div[data-testid="stDownloadButton"] button:focus:not(:active) {{
         color: {NAVY};
         border-color: {NAVY};
+    .worksheet-button {{
+        background-color: white;
+        color: {GREEN} !important;
+        border: 2px solid {GREEN};
+    }}
+    .worksheet-button:hover {{ background-color: {GREEN}; color: white !important; }}
+    .hmwk-button {{
+        background-color: {GOLD};
+        color: white !important;
+        border: 2px solid {GOLD};
+    }}
+    .hmwk-button:hover {{ background-color: #96754A; border-color: #96754A; }}
+    .hmwk-note {{
+        display: block;
+        font-size: 0.72rem;
+        color: {MUTED};
+        margin-top: 0.25rem;
+        line-height: 1.3;
+        white-space: normal;
     }}
     .calendar-note {{
         background-color: #FFF4E5;
@@ -172,6 +196,22 @@ st.write(
 )
 
 st.markdown("---")
+
+st.markdown(
+    f"""
+    <a href="{SUMMATIVE_TESTS_URL}" target="_blank" rel="noopener noreferrer"
+       style="display:block;text-align:center;background-color:{GOLD};color:white;
+              font-weight:800;font-size:1.15rem;padding:1rem 1.5rem;border-radius:12px;
+              text-decoration:none;margin-bottom:1.2rem;border:2px solid {GOLD};">
+        📝 Open Summative Test Sessions →
+    </a>
+    <p style="text-align:center;color:{MUTED};font-size:0.85rem;margin-top:-0.8rem;margin-bottom:1.5rem;">
+        30-day summative checks, autograded instantly, with teacher results dashboards.
+    </p>
+    """,
+    unsafe_allow_html=True,
+)
+
 st.markdown("### 📅 Lessons by Day")
 
 DAYS = [
@@ -203,26 +243,167 @@ DAYS = [
         page="https://cpamathgrade6day4.streamlit.app/",
         guide_file="Day4_Observer_Guide.pdf",
     ),
+    dict(
+        label="Day 5",
+        title="Area Is Multiplication",
+        desc="First grade-level content day: rectangle area taught alongside two-digit multiplication, using a Nerf dart board to generate dimensions.",
+        page="https://cpamath6day5.streamlit.app/",
+        guide_file="Day5_Observer_Guide.pdf",
+        worksheet_file="wksht.pdf",
+        worksheet_label="Classwork Worksheet (wksht)",
+        hmwk_url="https://www.ixl.com/math/grade-6/area-of-rectangles-and-squares",
+        hmwk_label="HMWK: Earn 90% on GG.2 (IXL, 6th grade)",
+    ),
+    dict(
+            label="Day 6",
+            title="Area Unlocks the Missing Side",
+            desc="Square vs. rectangle repair, then area runs in reverse: given the area and one side, find the missing side, and split an L-shaped floor into two rectangles.",
+            page="https://cpamath6day6.streamlit.app/",
+            guide_file="Day6_Observer_Guide.pdf",
+            worksheet_file="Day6_wksht.pdf",
+            worksheet_label="Classwork Worksheet (Day 6 wksht)",
+            hmwk_url="https://www.ixl.com/math/grade-6/area-of-rectangles-and-squares",
+            hmwk_label="HMWK: Earn 90% on GG.2 (IXL, 6th grade)",
+    ),
+    dict(
+        label="Day 7",
+        title="Area of Compound Rectangles",
+        desc="Split an L-shaped floor into two rectangles and add, or enclose it in one rectangle and subtract the missing piece — then apply both moves to a trickier T-shape.",
+        page="https://cpamath6day7.streamlit.app/",
+        guide_file="Day7_Observer_Guide.pdf",
+        worksheet_file="Day7_wksht.pdf",
+        worksheet_label="Classwork Worksheet (Day 7 wksht)",
+        hmwk_url="https://www.ixl.com/math/grade-6/area-of-compound-figures",
+        hmwk_label="HMWK: Earn 90% on GG.11 (IXL, 6th grade)",
+    ),
+    dict(
+        label="Day 8",
+        title="Area of a Parallelogram",
+        desc="Cut a triangle off one end of a leaning parallelogram and slide it to the other end — it becomes a rectangle with the exact same base and height, so Area = base × height.",
+        page="https://cpamath6day8.streamlit.app/",
+        guide_file="Day8_Observer_Guide.pdf",
+        worksheet_file="Day8_wksht.pdf",
+        worksheet_label="Classwork Worksheet (Day 8 wksht)",
+        hmwk_url="https://www.ixl.com/math/grade-6/area-of-parallelograms",
+        hmwk_label="HMWK: Earn 90% on GG.4 (IXL, 6th grade)",
+    ),
+    dict(
+        label="Day 9",
+        title="Area of a Parallelogram — Refine, Practice & Quiz",
+        desc="Finish Apply It, work through Refine (including a student's real base-times-slant mistake), Additional Practice, and the full Lesson 1 Quiz.",
+        page="https://cpamath6day9.streamlit.app/",
+        guide_file="Day9_Observer_Guide.pdf",
+        worksheet_file="Day9_wksht.pdf",
+        worksheet_label="Classwork Worksheet (Day 9 wksht)",
+        hmwk_url="https://www.ixl.com/math/grade-6/area-of-parallelograms",
+        hmwk_label="HMWK: Earn 90% on GG.4 (IXL, 6th grade)",
+    ),
+    dict(
+        label="Day 10",
+        title="Skill Breakout — Multiplying Decimals & Fractions",
+        desc="Two prerequisite-skill reviews before Percent of a Quantity: multiplying decimals and multiplying fractions, proving both are the same function wearing different notation, plus percent-flavored practice and two common-mistake traps.",
+        page="https://cpamath6day10.streamlit.app/",
+        guide_file="Day10_Observer_Guide.pdf",
+        worksheet_file="Day10_wksht.pdf",
+        worksheet_label="Classwork Worksheet (Day 10 wksht)",
+        hmwk_url="https://www.ixl.com/math/grade-6/percents-of-numbers-word-problems",
+        hmwk_label="HMWK: Percents of Numbers — Word Problems (IXL, 6th grade)",
+    ),
 ]
 
-cols = st.columns(4)
-for col, day in zip(cols, DAYS):
-    with col:
-        guide_path = os.path.join(os.path.dirname(__file__), "assets", day["guide_file"])
-        has_guide = os.path.exists(guide_path)
-        st.markdown(
-            f"""
-            <div class="day-card">
-                <span class="day-pill">{day['label']}</span>
-                <h3>{day['title']}</h3>
-                <p>{day['desc']}</p>
-                <div class="btn-stack">
-                    <a class="link-button" href="{day['page']}" target="_blank">🔗 Open {day['label']} →</a>
+# Starting with Day 5 (the first grade-level content day), each lesson dict above
+# should include an "hmwk_url" pointing to the matching IXL.com skill so a
+# 📝 HMWK button appears on its card. Optionally add "hmwk_label" to state the
+# target (e.g. "HMWK: Earn 90% on GG.2 (IXL, 6th grade)") instead of the
+# generic "HMWK (IXL.com)" text. Days before Day 5 are intro/pilot days and
+# intentionally have no homework link.
+#
+# A lesson dict may also include "worksheet_file" (a PDF in ./static/) to show
+# a 📝 Classwork Worksheet button — it renders above the HMWK button on that
+# day's card. Optionally add "worksheet_label" to customize its text.
+#
+# Shared family login for IXL — only needed if a parent doesn't have their own
+# student's IXL account and must borrow the class account to complete homework.
+IXL_PARENT_LOGIN_NOTE = "Parents borrowing the class login: Username bethuneacademy · Password BrightFuture2020"
+
+# All homework, whether or not it's practiced on IXL, still has to be shown
+# on paper — IXL is for practice/scoring, the notebook is the record of work.
+HMWK_INSTRUCTIONS = "Show ALL work by hand — pencil and paper (graph paper is best), written out in your math notebook."
+
+# PDFs live in ./static/ and are served directly by Streamlit at app/static/<file>
+# (requires [server] enableStaticServing = true in .streamlit/config.toml).
+# A plain <a href> to that URL is used instead of a base64/Blob "onclick" trick —
+# the base64 approach breaks Streamlit's React click handling and silently fails.
+STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
+
+# Cards wrap onto new rows instead of squeezing every day into one row —
+# with 7+ lesson days, one giant row of equal-width st.columns() made each
+# card too narrow for its own button labels and the HMWK note to fit,
+# forcing ugly text wrapping and ellipsis-truncated buttons. Chunking into
+# fixed-size rows keeps each card a readable width no matter how many
+# lesson days get added over the course of the year.
+CARDS_PER_ROW = 4
+for row_start in range(0, len(DAYS), CARDS_PER_ROW):
+    row_days = DAYS[row_start:row_start + CARDS_PER_ROW]
+    cols = st.columns(CARDS_PER_ROW)
+    for col, day in zip(cols, row_days):
+        with col:
+            guide_path = os.path.join(STATIC_DIR, day["guide_file"])
+            has_guide = os.path.exists(guide_path)
+            if has_guide:
+                guide_button_html = (
+                    f'<a class="pdf-button" href="app/static/{day["guide_file"]}" '
+                    f'target="_blank" rel="noopener noreferrer">📄 Observer Guide (PDF)</a>'
+                )
+            else:
+                guide_button_html = (
+                    '<span class="pdf-button disabled">📄 Guide — Coming Soon</span>'
+                )
+
+            worksheet_file = day.get("worksheet_file")
+            if worksheet_file and os.path.exists(os.path.join(STATIC_DIR, worksheet_file)):
+                worksheet_label = day.get("worksheet_label", "Classwork Worksheet")
+                worksheet_button_html = (
+                    f'<a class="worksheet-button" href="app/static/{worksheet_file}" '
+                    f'target="_blank" rel="noopener noreferrer">📝 {worksheet_label}</a>'
+                )
+            else:
+                worksheet_button_html = ""
+
+            hmwk_url = day.get("hmwk_url")
+            if hmwk_url:
+                hmwk_label = day.get("hmwk_label", "HMWK (IXL.com)")
+                hmwk_tooltip = f"{HMWK_INSTRUCTIONS}&#10;{IXL_PARENT_LOGIN_NOTE}"
+                hmwk_button_html = (
+                    f'<a class="hmwk-button" href="{hmwk_url}" target="_blank" '
+                    f'rel="noopener noreferrer" title="{hmwk_tooltip}">📝 {hmwk_label}</a>'
+                    f'<span class="hmwk-note">✏️ {HMWK_INSTRUCTIONS}</span>'
+                    f'<span class="hmwk-note">{IXL_PARENT_LOGIN_NOTE}</span>'
+                )
+            else:
+                hmwk_button_html = ""
+            # NOTE: btn_stack_html is built as one joined string (no blank lines
+            # between pieces). When a piece is "", leaving it on its own line
+            # inside the triple-quoted block below creates a whitespace-only
+            # line, which ends the raw-HTML block early (CommonMark's blank-line
+            # rule) and leaks a literal "</div>" onto the page for every day
+            # missing that piece. Joining on one line avoids that.
+            link_button_html = (
+                f'<a class="link-button" href="{day["page"]}" target="_blank">'
+                f'🔗 Open {day["label"]} →</a>'
+            )
+            btn_stack_html = link_button_html + guide_button_html + worksheet_button_html + hmwk_button_html
+            st.markdown(
+                f"""
+                <div class="day-card">
+                    <span class="day-pill">{day['label']}</span>
+                    <h3>{day['title']}</h3>
+                    <p>{day['desc']}</p>
+                    <div class="btn-stack">{btn_stack_html}</div>
                 </div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+                """,
+                unsafe_allow_html=True,
+            )
 
         # Rendered as a real Streamlit widget (not a raw <a href="data:...">)
         # so the browser actually triggers a download instead of silently
