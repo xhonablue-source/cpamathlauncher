@@ -119,6 +119,31 @@ st.markdown(
         cursor: not-allowed;
         pointer-events: none;
     }}
+    /* ---- Native download button, styled to match .pdf-button ---- */
+    div[data-testid="stDownloadButton"] {{
+        margin-top: -0.9rem;
+        margin-bottom: 1rem;
+    }}
+    div[data-testid="stDownloadButton"] button {{
+        width: 100%;
+        background-color: white;
+        color: {NAVY};
+        border: 2px solid {NAVY};
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.92rem;
+        padding: 0.5rem 0.8rem;
+        transition: background-color 0.15s ease, color 0.15s ease;
+    }}
+    div[data-testid="stDownloadButton"] button:hover {{
+        background-color: {NAVY};
+        color: white;
+        border-color: {NAVY};
+    }}
+    div[data-testid="stDownloadButton"] button:focus:not(:active) {{
+        color: {NAVY};
+        border-color: {NAVY};
+    }}
     .worksheet-button {{
         background-color: white;
         color: {GREEN} !important;
@@ -380,7 +405,6 @@ for row_start in range(0, len(DAYS), CARDS_PER_ROW):
                 """,
                 unsafe_allow_html=True,
             )
-
 st.markdown("---")
 st.markdown("### 🗓️ School Calendar")
 
