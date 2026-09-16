@@ -94,7 +94,7 @@ st.markdown(
         flex-direction: column;
         gap: 0.5rem;
     }}
-    .link-button, .pdf-button, .worksheet-button, .hmwk-button {{
+    .link-button, .pdf-button, .worksheet-button, .hmwk-button, .enrich-button {{
         display: block;
         box-sizing: border-box;
         text-align: center;
@@ -159,6 +159,22 @@ st.markdown(
         border: 2px solid {GREEN};
     }}
     .worksheet-button:hover {{ background-color: {GREEN}; color: white !important; }}
+    .enrich-button {{
+        background-color: #F1ECF8;
+        color: #5B3F8C !important;
+        border: 2px dashed #5B3F8C;
+        white-space: normal;
+        line-height: 1.25;
+    }}
+    .enrich-button:hover {{ background-color: #5B3F8C; color: white !important; }}
+    .enrich-note {{
+        display: block;
+        font-size: 0.72rem;
+        color: #5B3F8C;
+        margin-top: 0.25rem;
+        line-height: 1.3;
+        white-space: normal;
+    }}
     .hmwk-button {{
         background-color: {GOLD};
         color: white !important;
@@ -351,6 +367,12 @@ DAYS = [
         desc="No new lesson today: a 50-question review of rectangle area, missing sides, compound rectangles, parallelograms, and multiplying decimals & fractions, with in-depth worked solutions.",
         worksheet_file="Day11_Review_Sheet.pdf",
         worksheet_label="Review Sheet (50 Qs + Solutions)",
+        enrichment=[
+            dict(file="Day11_Enrichment_Stretching_Machine.pdf",
+                 label="Enrichment: The Stretching Machine (Advanced Outlook)"),
+            dict(file="Day11_Enrichment_Videos.pdf",
+                 label="Enrichment Videos (MIT · Stanford · CMU)"),
+        ],
     ),
     dict(
         label="Day 12",
@@ -358,6 +380,10 @@ DAYS = [
         desc="A second review with all-new numbers: 56 questions on rectangle area, missing sides, compound rectangles, parallelograms (with extra practice spotting distractor slanted sides and diagonals), and multiplying decimals & fractions, with in-depth worked solutions.",
         worksheet_file="Day12_Review_Sheet.pdf",
         worksheet_label="Review Sheet (56 Qs + Solutions)",
+        enrichment=[
+            dict(file="Day12_Enrichment_Project.pdf",
+                 label="Enrichment Project: Build It in Detroit"),
+        ],
     ),
 ]
 
@@ -371,6 +397,11 @@ DAYS = [
 # A lesson dict may also include "worksheet_file" (a PDF in ./static/) to show
 # a 📝 Classwork Worksheet button — it renders above the HMWK button on that
 # day's card. Optionally add "worksheet_label" to customize its text.
+#
+# A lesson dict may also include "enrichment": a list of dict(file=..., label=...)
+# PDFs in ./static/. Each shows as a dashed purple 🚀 button at the bottom of the
+# card. Enrichment is optional, "Advanced Outlook" material that can go beyond
+# 6th-grade standards — it is never required or tested.
 #
 # All homework, whether or not it's practiced on IXL, still has to be shown
 # on paper — IXL is for practice/scoring, the notebook is the record of work.
@@ -443,7 +474,19 @@ for row_start in range(0, len(DAYS), CARDS_PER_ROW):
                 )
             else:
                 link_button_html = ""
-            btn_stack_html = link_button_html + guide_button_html + worksheet_button_html + hmwk_button_html
+            enrich_button_html = "".join(
+                f'<a class="enrich-button" href="app/static/{e["file"]}" target="_blank" '
+                f'rel="noopener noreferrer">🚀 {e["label"]}</a>'
+                for e in day.get("enrichment", [])
+                if os.path.exists(os.path.join(STATIC_DIR, e["file"]))
+            )
+            if enrich_button_html:
+                enrich_button_html += (
+                    '<span class="enrich-note">🚀 Optional enrichment · Advanced Outlook — '
+                    'may go beyond 6th-grade standards; not tested.</span>'
+                )
+            btn_stack_html = (link_button_html + guide_button_html + worksheet_button_html
+                              + hmwk_button_html + enrich_button_html)
             st.markdown(
                 f"""
                 <div class="day-card">
