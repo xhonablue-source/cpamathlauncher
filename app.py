@@ -14,10 +14,18 @@ CREAM = "#F2EFE9"
 MUTED = "#9C9284"
 GREEN = "#3C8B5D"
 
-# The Summative Test Sessions button opens the current summative assessment PDF
-# (served from ./static/, like the review sheets). Swap the file name here when
-# a new summative assessment is posted.
-SUMMATIVE_TESTS_URL = "app/static/Summative_Assessment_Days5-10.pdf"
+# The Summative Test Sessions button is the launcher for ALL summative tests
+# this school year. Clicking it opens a list of every test below. To post a new
+# test, drop its PDF in ./static/ and add one dict to the end of this list.
+SUMMATIVE_TESTS = [
+    dict(
+        label="Test 1",
+        title="Days 5–10",
+        desc="25 questions (4 pts each): rectangle area, missing sides, compound rectangles, "
+             "parallelograms, and multiplying decimals &amp; fractions.",
+        file="Summative_Assessment_Days5-10.pdf",
+    ),
+]
 
 st.markdown(
     f"""
@@ -199,17 +207,42 @@ st.write(
 
 st.markdown("---")
 
+# Built as one joined string with no blank lines so Streamlit's markdown
+# parser keeps the whole raw-HTML block together.
+test_items_html = "".join(
+    f'<a class="test-item" href="app/static/{t["file"]}" target="_blank" rel="noopener noreferrer">'
+    f'<span class="test-pill">{t["label"]}</span>'
+    f'<span class="test-text"><b>{t["title"]}</b><br><span class="test-desc">{t["desc"]}</span></span>'
+    f'<span class="test-open">Open PDF →</span></a>'
+    for t in SUMMATIVE_TESTS
+    if os.path.exists(os.path.join(os.path.dirname(__file__), "static", t["file"]))
+) or '<p class="test-desc">No summative tests posted yet.</p>'
 st.markdown(
     f"""
-    <a href="{SUMMATIVE_TESTS_URL}" target="_blank" rel="noopener noreferrer"
-       style="display:block;text-align:center;background-color:{GOLD};color:white;
-              font-weight:800;font-size:1.15rem;padding:1rem 1.5rem;border-radius:12px;
-              text-decoration:none;margin-bottom:1.2rem;border:2px solid {GOLD};">
-        📝 Open Summative Test Sessions →
-    </a>
-    <p style="text-align:center;color:{MUTED};font-size:0.85rem;margin-top:-0.8rem;margin-bottom:1.5rem;">
-        Current summative: Days 5–10 · 25 questions (4 pts each) · rectangle area, missing sides,
-        compound rectangles, parallelograms, and multiplying decimals &amp; fractions. Show all work.
+    <style>
+    details.summative > summary {{
+        list-style: none; cursor: pointer; display: block; text-align: center;
+        background-color: {GOLD}; color: white; font-weight: 800; font-size: 1.15rem;
+        padding: 1rem 1.5rem; border-radius: 12px; border: 2px solid {GOLD};
+    }}
+    details.summative > summary::-webkit-details-marker {{ display: none; }}
+    details.summative > summary:hover {{ background-color: #96754A; border-color: #96754A; }}
+    details.summative[open] > summary {{ border-radius: 12px 12px 0 0; }}
+    .test-list {{ border: 2px solid {GOLD}; border-top: none; border-radius: 0 0 12px 12px; padding: 0.6rem; }}
+    a.test-item {{
+        display: flex; align-items: center; gap: 0.9rem; padding: 0.7rem 0.9rem; margin: 0.3rem 0;
+        border-radius: 10px; background: {CREAM}; text-decoration: none !important; color: {NAVY} !important;
+    }}
+    a.test-item:hover {{ background: #E8E1D3; }}
+    .test-pill {{ background: {NAVY}; color: white; font-weight: 700; font-size: 0.8rem;
+                  padding: 0.25rem 0.7rem; border-radius: 999px; white-space: nowrap; }}
+    .test-text {{ flex: 1; line-height: 1.35; }}
+    .test-desc {{ color: {MUTED}; font-size: 0.82rem; }}
+    .test-open {{ font-weight: 700; color: {GOLD}; white-space: nowrap; }}
+    </style>
+    <details class="summative"><summary>📝 Open Summative Test Sessions →</summary><div class="test-list">{test_items_html}</div></details>
+    <p style="text-align:center;color:{MUTED};font-size:0.85rem;margin-top:0.4rem;margin-bottom:1.5rem;">
+        Every summative test for the school year, in order. Click to see the list, then open a test. Show all work.
     </p>
     """,
     unsafe_allow_html=True,
