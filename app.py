@@ -14,9 +14,10 @@ CREAM = "#F2EFE9"
 MUTED = "#9C9284"
 GREEN = "#3C8B5D"
 
-# URL of the standalone Summative Test Sessions app (see SETUP.md in that
-# app's repo for deployment steps). Update this once it's deployed.
-SUMMATIVE_TESTS_URL = "https://cpamath-summative-tests.streamlit.app/"
+# The Summative Test Sessions button opens the current summative assessment PDF
+# (served from ./static/, like the review sheets). Swap the file name here when
+# a new summative assessment is posted.
+SUMMATIVE_TESTS_URL = "app/static/Summative_Assessment_Days5-10.pdf"
 
 st.markdown(
     f"""
@@ -207,7 +208,8 @@ st.markdown(
         📝 Open Summative Test Sessions →
     </a>
     <p style="text-align:center;color:{MUTED};font-size:0.85rem;margin-top:-0.8rem;margin-bottom:1.5rem;">
-        30-day summative checks, autograded instantly, with teacher results dashboards.
+        Current summative: Days 5–10 · 25 questions (4 pts each) · rectangle area, missing sides,
+        compound rectangles, parallelograms, and multiplying decimals &amp; fractions. Show all work.
     </p>
     """,
     unsafe_allow_html=True,
@@ -323,13 +325,6 @@ DAYS = [
         desc="A second review with all-new numbers: 56 questions on rectangle area, missing sides, compound rectangles, parallelograms (with extra practice spotting distractor slanted sides and diagonals), and multiplying decimals & fractions, with in-depth worked solutions.",
         worksheet_file="Day12_Review_Sheet.pdf",
         worksheet_label="Review Sheet (56 Qs + Solutions)",
-    ),
-    dict(
-        label="Day 13",
-        title="Summative Assessment — Days 5–10",
-        desc="25-question test (4 points each, 100 total) on rectangle area, missing sides, compound rectangles, parallelograms with distractor measurements, and multiplying decimals & fractions. Show all work.",
-        worksheet_file="Summative_Assessment_Days5-10.pdf",
-        worksheet_label="Summative Assessment (25 Qs)",
     ),
 ]
 
