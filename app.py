@@ -317,6 +317,20 @@ DAYS = [
         worksheet_file="Day11_Review_Sheet.pdf",
         worksheet_label="Review Sheet (50 Qs + Solutions)",
     ),
+    dict(
+        label="Day 12",
+        title="Review Day 2 — Days 5–10",
+        desc="A second review with all-new numbers: 56 questions on rectangle area, missing sides, compound rectangles, parallelograms (with extra practice spotting distractor slanted sides and diagonals), and multiplying decimals & fractions, with in-depth worked solutions.",
+        worksheet_file="Day12_Review_Sheet.pdf",
+        worksheet_label="Review Sheet (56 Qs + Solutions)",
+    ),
+    dict(
+        label="Day 13",
+        title="Summative Assessment — Days 5–10",
+        desc="25-question test (4 points each, 100 total) on rectangle area, missing sides, compound rectangles, parallelograms with distractor measurements, and multiplying decimals & fractions. Show all work.",
+        worksheet_file="Summative_Assessment_Days5-10.pdf",
+        worksheet_label="Summative Assessment (25 Qs)",
+    ),
 ]
 
 # Starting with Day 5 (the first grade-level content day), each lesson dict above
