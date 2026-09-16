@@ -310,6 +310,13 @@ DAYS = [
         hmwk_url="https://www.ixl.com/math/grade-6/percents-of-numbers-word-problems",
         hmwk_label="HMWK: Percents of Numbers — Word Problems (IXL, 6th grade)",
     ),
+    dict(
+        label="Day 11",
+        title="Review Day — Days 5–10",
+        desc="No new lesson today: a 50-question review of rectangle area, missing sides, compound rectangles, parallelograms, and multiplying decimals & fractions, with in-depth worked solutions.",
+        worksheet_file="Day11_Review_Sheet.pdf",
+        worksheet_label="Review Sheet (50 Qs + Solutions)",
+    ),
 ]
 
 # Starting with Day 5 (the first grade-level content day), each lesson dict above
@@ -345,9 +352,12 @@ for row_start in range(0, len(DAYS), CARDS_PER_ROW):
     cols = st.columns(CARDS_PER_ROW)
     for col, day in zip(cols, row_days):
         with col:
-            guide_path = os.path.join(STATIC_DIR, day["guide_file"])
-            has_guide = os.path.exists(guide_path)
-            if has_guide:
+            # Review days have no lesson page or observer guide, so both
+            # "page" and "guide_file" are optional.
+            guide_file = day.get("guide_file")
+            if not guide_file:
+                guide_button_html = ""
+            elif os.path.exists(os.path.join(STATIC_DIR, guide_file)):
                 guide_button_html = (
                     f'<a class="pdf-button" href="app/static/{day["guide_file"]}" '
                     f'target="_blank" rel="noopener noreferrer">📄 Observer Guide (PDF)</a>'
@@ -384,10 +394,13 @@ for row_start in range(0, len(DAYS), CARDS_PER_ROW):
             # line, which ends the raw-HTML block early (CommonMark's blank-line
             # rule) and leaks a literal "</div>" onto the page for every day
             # missing that piece. Joining on one line avoids that.
-            link_button_html = (
-                f'<a class="link-button" href="{day["page"]}" target="_blank">'
-                f'🔗 Open {day["label"]} →</a>'
-            )
+            if day.get("page"):
+                link_button_html = (
+                    f'<a class="link-button" href="{day["page"]}" target="_blank">'
+                    f'🔗 Open {day["label"]} →</a>'
+                )
+            else:
+                link_button_html = ""
             btn_stack_html = link_button_html + guide_button_html + worksheet_button_html + hmwk_button_html
             st.markdown(
                 f"""
