@@ -402,6 +402,39 @@ DAYS = [
                  label="Enrichment Project: Build It in Detroit"),
         ],
     ),
+    dict(
+        label="Day 13",
+        title="Area of a Triangle",
+        desc="Two copies of any triangle lock together into a parallelogram, so Area = ½ × base × height — including obtuse triangles whose height falls outside the shape, and problems that run the formula backwards to a missing base or height.",
+        guide_file="Day13_Observer_Guide.pdf",
+        worksheet_file="Day13_Lesson_Packet.pdf",
+        worksheet_label="Lesson & Practice (12 Qs + Solutions)",
+        anchor_charts=[
+            dict(file="Anchor_Chart_Area_of_a_Parallelogram.pdf", label="Anchor Chart: Area of a Parallelogram"),
+        ],
+        hmwk_url="https://www.ixl.com/math/grade-6/area-of-triangles",
+        hmwk_label="HMWK: Earn 90% on Area of Triangles (IXL, 6th grade)",
+    ),
+    dict(
+        label="Day 14",
+        title="Nets & Surface Area",
+        desc="Cut a real box apart and flatten it: every face is a rectangle or triangle you can already measure. Surface area of cubes, rectangular prisms, and triangular prisms, plus wrapping-paper, fish-tank, and paint problems.",
+        guide_file="Day14_Observer_Guide.pdf",
+        worksheet_file="Day14_Lesson_Packet.pdf",
+        worksheet_label="Lesson & Practice (12 Qs + Solutions)",
+        hmwk_url="https://www.ixl.com/math/grade-6/surface-area-of-cubes-and-rectangular-prisms",
+        hmwk_label="HMWK: Earn 90% on Surface Area (IXL, 6th grade)",
+    ),
+    dict(
+        label="Day 15",
+        title="Area of a Trapezoid",
+        desc="One pair of parallel sides, two ways to find the area: decompose into a rectangle and two triangles, or compose two copies into a parallelogram with base b₁ + b₂ — both give A = ½(b₁ + b₂)h.",
+        guide_file="Day15_Observer_Guide.pdf",
+        worksheet_file="Day15_Lesson_Packet.pdf",
+        worksheet_label="Lesson & Practice (12 Qs + Solutions)",
+        hmwk_url="https://www.ixl.com/math/grade-6/area-of-a-trapezoid",
+        hmwk_label="HMWK: Earn 90% on Area of Trapezoids (IXL, 6th grade)",
+    ),
 ]
 
 # Starting with Day 5 (the first grade-level content day), each lesson dict above
