@@ -94,7 +94,7 @@ st.markdown(
         flex-direction: column;
         gap: 0.5rem;
     }}
-    .link-button, .pdf-button, .worksheet-button, .hmwk-button, .enrich-button {{
+    .link-button, .pdf-button, .worksheet-button, .hmwk-button, .enrich-button, .anchor-button {{
         display: block;
         box-sizing: border-box;
         text-align: center;
@@ -159,6 +159,14 @@ st.markdown(
         border: 2px solid {GREEN};
     }}
     .worksheet-button:hover {{ background-color: {GREEN}; color: white !important; }}
+    .anchor-button {{
+        background-color: #EAF3FF;
+        color: #1F5FA8 !important;
+        border: 2px solid #1F5FA8;
+        white-space: normal;
+        line-height: 1.25;
+    }}
+    .anchor-button:hover {{ background-color: #1F5FA8; color: white !important; }}
     .enrich-button {{
         background-color: #F1ECF8;
         color: #5B3F8C !important;
@@ -312,6 +320,9 @@ DAYS = [
             desc="Square vs. rectangle repair, then area runs in reverse: given the area and one side, find the missing side, and split an L-shaped floor into two rectangles.",
             page="https://cpamath6day6.streamlit.app/",
             guide_file="Day6_Observer_Guide.pdf",
+            anchor_charts=[
+                dict(file="Anchor_Chart_Area_of_a_Square.pdf", label="Anchor Chart: Area of a Square"),
+            ],
             worksheet_file="Day6_wksht.pdf",
             worksheet_label="Classwork Worksheet (Day 6 wksht)",
             hmwk_url="https://www.ixl.com/math/grade-6/area-of-rectangles-and-squares",
@@ -334,6 +345,9 @@ DAYS = [
         desc="Cut a triangle off one end of a leaning parallelogram and slide it to the other end — it becomes a rectangle with the exact same base and height, so Area = base × height.",
         page="https://cpamath6day8.streamlit.app/",
         guide_file="Day8_Observer_Guide.pdf",
+        anchor_charts=[
+            dict(file="Anchor_Chart_Area_of_a_Parallelogram.pdf", label="Anchor Chart: Area of a Parallelogram"),
+        ],
         worksheet_file="Day8_wksht.pdf",
         worksheet_label="Classwork Worksheet (Day 8 wksht)",
         hmwk_url="https://www.ixl.com/math/grade-6/area-of-parallelograms",
@@ -345,6 +359,9 @@ DAYS = [
         desc="Finish Apply It, work through Refine (including a student's real base-times-slant mistake), Additional Practice, and the full Lesson 1 Quiz.",
         page="https://cpamath6day9.streamlit.app/",
         guide_file="Day9_Observer_Guide.pdf",
+        anchor_charts=[
+            dict(file="Anchor_Chart_Area_of_a_Parallelogram.pdf", label="Anchor Chart: Area of a Parallelogram"),
+        ],
         worksheet_file="Day9_wksht.pdf",
         worksheet_label="Classwork Worksheet (Day 9 wksht)",
         hmwk_url="https://www.ixl.com/math/grade-6/area-of-parallelograms",
@@ -397,6 +414,9 @@ DAYS = [
 # A lesson dict may also include "worksheet_file" (a PDF in ./static/) to show
 # a 📝 Classwork Worksheet button — it renders above the HMWK button on that
 # day's card. Optionally add "worksheet_label" to customize its text.
+#
+# A lesson dict may also include "anchor_charts": a list of dict(file=..., label=...)
+# PDFs in ./static/. Each shows as a light-blue 📌 button under the Observer Guide.
 #
 # A lesson dict may also include "enrichment": a list of dict(file=..., label=...)
 # PDFs in ./static/. Each shows as a dashed purple 🚀 button at the bottom of the
@@ -485,7 +505,13 @@ for row_start in range(0, len(DAYS), CARDS_PER_ROW):
                     '<span class="enrich-note">🚀 Optional enrichment · Advanced Outlook — '
                     'may go beyond 6th-grade standards; not tested.</span>'
                 )
-            btn_stack_html = (link_button_html + guide_button_html + worksheet_button_html
+            anchor_button_html = "".join(
+                f'<a class="anchor-button" href="app/static/{c["file"]}" target="_blank" '
+                f'rel="noopener noreferrer">📌 {c["label"]}</a>'
+                for c in day.get("anchor_charts", [])
+                if os.path.exists(os.path.join(STATIC_DIR, c["file"]))
+            )
+            btn_stack_html = (link_button_html + guide_button_html + anchor_button_html + worksheet_button_html
                               + hmwk_button_html + enrich_button_html)
             st.markdown(
                 f"""
