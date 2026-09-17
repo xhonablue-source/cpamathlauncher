@@ -441,6 +441,11 @@ DAYS = [
         desc="No new lesson today: a 42-question review of triangle area, nets & surface area, and trapezoid area, with distractor slanted sides, missing-measure problems, error analysis, and in-depth worked solutions.",
         worksheet_file="Day16_Review_Sheet.pdf",
         worksheet_label="Review Sheet (42 Qs + Solutions)",
+        anchor_charts=[
+            dict(file="Anchor_Chart_Area_of_a_Triangle.pdf", label="Anchor Chart: Area of a Triangle"),
+            dict(file="Anchor_Chart_Nets_and_Surface_Area.pdf", label="Anchor Chart: Nets & Surface Area"),
+            dict(file="Anchor_Chart_Area_of_a_Trapezoid.pdf", label="Anchor Chart: Area of a Trapezoid"),
+        ],
     ),
     dict(
         label="Day 17",
