@@ -435,6 +435,24 @@ DAYS = [
         hmwk_url="https://www.ixl.com/math/grade-6/area-of-a-trapezoid",
         hmwk_label="HMWK: Earn 90% on Area of Trapezoids (IXL, 6th grade)",
     ),
+    dict(
+        label="Day 16",
+        title="Review Day — Days 13–15",
+        desc="No new lesson today: a 42-question review of triangle area, nets & surface area, and trapezoid area, with distractor slanted sides, missing-measure problems, error analysis, and in-depth worked solutions.",
+        worksheet_file="Day16_Review_Sheet.pdf",
+        worksheet_label="Review Sheet (42 Qs + Solutions)",
+    ),
+    dict(
+        label="Day 17",
+        title="Enrichment Day — Three Big Ideas",
+        desc="Optional Advanced Outlook day built on Days 13–15: Pick's Theorem (count dots, get area), Euler's Formula (V − E + F = 2 for every solid you built from a net), and why surface area grows slower than volume — plus a hands-on Polyhedron Zoo build.",
+        enrichment=[
+            dict(file="Day17_Enrichment_Big_Ideas.pdf",
+                 label="Enrichment: Pick's Theorem, Euler's Formula & SA:V"),
+            dict(file="Day17_Enrichment_Project_Polyhedron_Zoo.pdf",
+                 label="Enrichment Project: The Polyhedron Zoo"),
+        ],
+    ),
 ]
 
 # Starting with Day 5 (the first grade-level content day), each lesson dict above
