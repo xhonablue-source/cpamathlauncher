@@ -471,6 +471,8 @@ DAYS = [
         page="https://cpamath6day18.streamlit.app/",
         hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-ratios-prop-topic/intro-to-ratios/e/representing-ratios",
         hmwk_label="HMWK: Earn 90% on Basic Ratios (Khan Academy)",
+        worksheet_file="Day18_wksht.pdf",
+        worksheet_label="Classwork Worksheet (Day 18 wksht)",
     ),
     dict(
         label="Day 19",
@@ -479,6 +481,8 @@ DAYS = [
         page="https://cpamath6day19.streamlit.app/",
         hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-ratios-prop-topic/cc-6th-ratio-word-problems/e/part-part-whole-ratios",
         hmwk_label="HMWK: Earn 90% on Part-Part-Whole Ratios (Khan Academy)",
+        worksheet_file="Day19_wksht.pdf",
+        worksheet_label="Classwork Worksheet (Day 19 wksht)",
     ),
     dict(
         label="Day 20",
@@ -487,6 +491,8 @@ DAYS = [
         page="https://cpamath6day20.streamlit.app/",
         hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-ratios-prop-topic/visualize-ratios/e/ratios-with-tape-diagrams",
         hmwk_label="HMWK: Earn 90% on Ratios With Tape Diagrams (Khan Academy)",
+        worksheet_file="Day20_wksht.pdf",
+        worksheet_label="Classwork Worksheet (Day 20 wksht)",
     ),
     dict(
         label="Day 21",
@@ -495,6 +501,8 @@ DAYS = [
         page="https://cpamath6day21.streamlit.app/",
         hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-ratios-prop-topic/visualize-ratios/e/equivalent-ratio-word-problems--basic-",
         hmwk_label="HMWK: Earn 90% on Equivalent Ratios With Equal Groups (Khan Academy)",
+        worksheet_file="Day21_wksht.pdf",
+        worksheet_label="Classwork Worksheet (Day 21 wksht)",
     ),
     dict(
         label="Day 22",
@@ -503,6 +511,8 @@ DAYS = [
         page="https://cpamath6day22.streamlit.app/",
         hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-ratios-prop-topic/cc-6th-equivalent-ratios/e/solving-ratio-problems-with-tables",
         hmwk_label="HMWK: Earn 90% on Ratio Tables (Khan Academy)",
+        worksheet_file="Day22_wksht.pdf",
+        worksheet_label="Classwork Worksheet (Day 22 wksht)",
     ),
 ]
 
