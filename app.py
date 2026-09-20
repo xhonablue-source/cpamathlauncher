@@ -299,7 +299,7 @@ DAYS = [
     dict(
         label="Day 4",
         title="Testing the Model",
-        desc="First multi-board Engage/Explore/Enrich pilot with IXL.com, journaling, and 1-on-1 tutoring.",
+        desc="First multi-board Engage/Explore/Enrich pilot with online practice, journaling, and 1-on-1 tutoring.",
         page="https://cpamathgrade6day4.streamlit.app/",
         guide_file="Day4_Observer_Guide.pdf",
     ),
@@ -311,8 +311,8 @@ DAYS = [
         guide_file="Day5_Observer_Guide.pdf",
         worksheet_file="wksht.pdf",
         worksheet_label="Classwork Worksheet (wksht)",
-        hmwk_url="https://www.ixl.com/math/grade-6/area-of-rectangles-and-squares",
-        hmwk_label="HMWK: Earn 90% on GG.2 (IXL, 6th grade)",
+        hmwk_url="https://www.khanacademy.org/math/cc-fourth-grade-math/area-perimeter/imp-area-and-perimeter/e/area-and-perimeter-of-rectangles-word-problems",
+        hmwk_label="HMWK: Earn 90% on Area & Perimeter of Rectangles: Word Problems (Khan Academy)",
     ),
     dict(
             label="Day 6",
@@ -325,8 +325,8 @@ DAYS = [
             ],
             worksheet_file="Day6_wksht.pdf",
             worksheet_label="Classwork Worksheet (Day 6 wksht)",
-            hmwk_url="https://www.ixl.com/math/grade-6/area-of-rectangles-and-squares",
-            hmwk_label="HMWK: Earn 90% on GG.2 (IXL, 6th grade)",
+            hmwk_url="https://www.khanacademy.org/math/cc-third-grade-math/imp-geometry/imp-multiply-to-find-area/e/find-a-missing-side-length-when-given-area-of-a-rectangle",
+            hmwk_label="HMWK: Earn 90% on Find a Missing Side Length When Given Area (Khan Academy)",
     ),
     dict(
         label="Day 7",
@@ -336,8 +336,8 @@ DAYS = [
         guide_file="Day7_Observer_Guide.pdf",
         worksheet_file="Day7_wksht.pdf",
         worksheet_label="Classwork Worksheet (Day 7 wksht)",
-        hmwk_url="https://www.ixl.com/math/grade-6/area-of-compound-figures",
-        hmwk_label="HMWK: Earn 90% on GG.11 (IXL, 6th grade)",
+        hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/x0267d782:cc-6th-plane-figures/cc-6th-area/e/area-of-quadrilaterals-and-polygons",
+        hmwk_label="HMWK: Earn 90% on Area of Composite Shapes (Khan Academy)",
     ),
     dict(
         label="Day 8",
@@ -350,8 +350,8 @@ DAYS = [
         ],
         worksheet_file="Day8_wksht.pdf",
         worksheet_label="Classwork Worksheet (Day 8 wksht)",
-        hmwk_url="https://www.ixl.com/math/grade-6/area-of-parallelograms",
-        hmwk_label="HMWK: Earn 90% on GG.4 (IXL, 6th grade)",
+        hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/x0267d782:cc-6th-plane-figures/cc-6th-parallelogram-area/e/area_of_parallelograms",
+        hmwk_label="HMWK: Earn 90% on Area of Parallelograms (Khan Academy)",
     ),
     dict(
         label="Day 9",
@@ -364,8 +364,8 @@ DAYS = [
         ],
         worksheet_file="Day9_wksht.pdf",
         worksheet_label="Classwork Worksheet (Day 9 wksht)",
-        hmwk_url="https://www.ixl.com/math/grade-6/area-of-parallelograms",
-        hmwk_label="HMWK: Earn 90% on GG.4 (IXL, 6th grade)",
+        hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/x0267d782:cc-6th-plane-figures/cc-6th-parallelogram-area/e/find-missing-side-when-given-area-of-a-parallelogram",
+        hmwk_label="HMWK: Earn 90% on Find Missing Length When Given Area of a Parallelogram (Khan Academy)",
     ),
     dict(
         label="Day 10",
@@ -375,8 +375,8 @@ DAYS = [
         guide_file="Day10_Observer_Guide.pdf",
         worksheet_file="Day10_wksht.pdf",
         worksheet_label="Classwork Worksheet (Day 10 wksht)",
-        hmwk_url="https://www.ixl.com/math/grade-6/percents-of-numbers-word-problems",
-        hmwk_label="HMWK: Percents of Numbers — Word Problems (IXL, 6th grade)",
+        hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-arithmetic-operations/cc-6th-multiplying-decimals/e/multiplying_decimals",
+        hmwk_label="HMWK: Earn 90% on Multiplying Decimals (Standard Algorithm) (Khan Academy)",
     ),
     dict(
         label="Day 11",
@@ -390,6 +390,8 @@ DAYS = [
             dict(file="Day11_Enrichment_Videos.pdf",
                  label="Enrichment Videos (MIT · Stanford · CMU)"),
         ],
+        hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/x0267d782:cc-6th-plane-figures/cc-6th-area/e/area-of-quadrilaterals-and-polygons",
+        hmwk_label="HMWK: Earn 90% on Area of Composite Shapes (Khan Academy)",
     ),
     dict(
         label="Day 12",
@@ -401,6 +403,8 @@ DAYS = [
             dict(file="Day12_Enrichment_Project.pdf",
                  label="Enrichment Project: Build It in Detroit"),
         ],
+        hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/x0267d782:cc-6th-plane-figures/cc-6th-parallelogram-area/e/find-missing-side-when-given-area-of-a-parallelogram",
+        hmwk_label="HMWK: Earn 90% on Find Missing Length When Given Area of a Parallelogram (Khan Academy)",
     ),
     dict(
         label="Day 13",
@@ -412,8 +416,8 @@ DAYS = [
         anchor_charts=[
             dict(file="Anchor_Chart_Area_of_a_Parallelogram.pdf", label="Anchor Chart: Area of a Parallelogram"),
         ],
-        hmwk_url="https://www.ixl.com/math/grade-6/area-of-triangles",
-        hmwk_label="HMWK: Earn 90% on Area of Triangles (IXL, 6th grade)",
+        hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/x0267d782:cc-6th-plane-figures/cc-6th-area-triangle/e/area_of_triangles_1",
+        hmwk_label="HMWK: Earn 90% on Area of Triangles (Khan Academy)",
     ),
     dict(
         label="Day 14",
@@ -422,8 +426,8 @@ DAYS = [
         guide_file="Day14_Observer_Guide.pdf",
         worksheet_file="Day14_Lesson_Packet.pdf",
         worksheet_label="Lesson & Practice (12 Qs + Solutions)",
-        hmwk_url="https://www.ixl.com/math/grade-6/surface-area-of-cubes-and-rectangular-prisms",
-        hmwk_label="HMWK: Earn 90% on Surface Area (IXL, 6th grade)",
+        hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-geometry-topic/x0267d782:cc-6th-nets-of-3d-figures/e/surface-area",
+        hmwk_label="HMWK: Earn 90% on Surface Area Using Nets (Khan Academy)",
     ),
     dict(
         label="Day 15",
@@ -432,8 +436,8 @@ DAYS = [
         guide_file="Day15_Observer_Guide.pdf",
         worksheet_file="Day15_Lesson_Packet.pdf",
         worksheet_label="Lesson & Practice (12 Qs + Solutions)",
-        hmwk_url="https://www.ixl.com/math/grade-6/area-of-a-trapezoid",
-        hmwk_label="HMWK: Earn 90% on Area of Trapezoids (IXL, 6th grade)",
+        hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/x0267d782:cc-6th-plane-figures/cc-6th-area/e/decompose-area-with-triangles",
+        hmwk_label="HMWK: Earn 90% on Decompose Area With Triangles (Khan Academy)",
     ),
     dict(
         label="Day 16",
@@ -446,6 +450,8 @@ DAYS = [
             dict(file="Anchor_Chart_Nets_and_Surface_Area.pdf", label="Anchor Chart: Nets & Surface Area"),
             dict(file="Anchor_Chart_Area_of_a_Trapezoid.pdf", label="Anchor Chart: Area of a Trapezoid"),
         ],
+        hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/x0267d782:cc-6th-plane-figures/cc-6th-area-triangle/e/find-base-and-height-on-a-triangle",
+        hmwk_label="HMWK: Earn 90% on Find Base and Height on a Triangle (Khan Academy)",
     ),
     dict(
         label="Day 17",
@@ -458,13 +464,55 @@ DAYS = [
                  label="Enrichment Project: The Polyhedron Zoo"),
         ],
     ),
+    dict(
+        label="Day 18",
+        title="Ratio Language — For Every",
+        desc="Ratios start out loud: 4 test tubes for every 1 student, 6 tacos for every 3 guests. Equal-groups models built from counters, the order-matters trap, and a For-Every Museum build where every exhibit card has to name both quantities being compared.",
+        page="https://cpamath6day18.streamlit.app/",
+        hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-ratios-prop-topic/intro-to-ratios/e/representing-ratios",
+        hmwk_label="HMWK: Earn 90% on Basic Ratios (Khan Academy)",
+    ),
+    dict(
+        label="Day 19",
+        title="Writing Ratios — Part to Part, Part to Whole",
+        desc="Two ways to write a ratio — the word to and a colon — then the split that trips everyone: 8 mallards to 5 ruddy ducks is part-to-part, but 8 to 13 is part-to-whole. Ends with the Ratio Card Challenge, scored on whether the class can tell what you compared.",
+        page="https://cpamath6day19.streamlit.app/",
+        hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-ratios-prop-topic/cc-6th-ratio-word-problems/e/part-part-whole-ratios",
+        hmwk_label="HMWK: Earn 90% on Part-Part-Whole Ratios (Khan Academy)",
+    ),
+    dict(
+        label="Day 20",
+        title="Refine — Say What It Compares",
+        desc="No new idea today, just precision: a ratio with no sentence attached scores nothing. Akiko's bike ride, Mason's granola-bar error, Bridget's welcome bags — where the difference keeps moving but the multiple never does — and a team ratio hunt on the bear-tagging data.",
+        page="https://cpamath6day20.streamlit.app/",
+        hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-ratios-prop-topic/visualize-ratios/e/ratios-with-tape-diagrams",
+        hmwk_label="HMWK: Earn 90% on Ratios With Tape Diagrams (Khan Academy)",
+    ),
+    dict(
+        label="Day 21",
+        title="Explore Equivalent Ratios",
+        desc="Equivalent ratios express the same comparison. Build one by combining equal groups, which turns out to be the same as multiplying both quantities by the same number — and see exactly why 3 : 2 and 9 : 8 are not equivalent even though 6 was added to each.",
+        page="https://cpamath6day21.streamlit.app/",
+        hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-ratios-prop-topic/visualize-ratios/e/equivalent-ratio-word-problems--basic-",
+        hmwk_label="HMWK: Earn 90% on Equivalent Ratios With Equal Groups (Khan Academy)",
+    ),
+    dict(
+        label="Day 22",
+        title="Equivalent Ratios at Scale",
+        desc="Equal groups run out of paper at 120 picnic tables. The double number line shows every equivalent ratio at once; the ratio table multiplies or divides straight to the one you need. Heartbeat Lab, Kareem's 4 : 1 error, and a review of the whole ratio week.",
+        page="https://cpamath6day22.streamlit.app/",
+        hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-ratios-prop-topic/cc-6th-equivalent-ratios/e/solving-ratio-problems-with-tables",
+        hmwk_label="HMWK: Earn 90% on Ratio Tables (Khan Academy)",
+    ),
 ]
 
 # Starting with Day 5 (the first grade-level content day), each lesson dict above
-# should include an "hmwk_url" pointing to the matching IXL.com skill so a
+# should include an "hmwk_url" pointing to the matching Khan Academy exercise so a
 # 📝 HMWK button appears on its card. Optionally add "hmwk_label" to state the
-# target (e.g. "HMWK: Earn 90% on GG.2 (IXL, 6th grade)") instead of the
-# generic "HMWK (IXL.com)" text. Days before Day 5 are intro/pilot days and
+# target (e.g. "HMWK: Earn 90% on Area of Triangles (Khan Academy)") instead
+# of the generic "HMWK (Khan Academy)" text. Students reach Khan Academy
+# through Clever SSO, so these links land them straight in the exercise
+# already signed in. Days before Day 5 are intro/pilot days and
 # intentionally have no homework link.
 #
 # A lesson dict may also include "worksheet_file" (a PDF in ./static/) to show
@@ -479,8 +527,9 @@ DAYS = [
 # card. Enrichment is optional, "Advanced Outlook" material that can go beyond
 # 6th-grade standards — it is never required or tested.
 #
-# All homework, whether or not it's practiced on IXL, still has to be shown
-# on paper — IXL is for practice/scoring, the notebook is the record of work.
+# All homework, whether or not it's practiced on Khan Academy, still has to be
+# shown on paper — Khan Academy is for practice/scoring, the notebook is the
+# record of work.
 HMWK_INSTRUCTIONS = "Show ALL work by hand — pencil and paper (graph paper is best), written out in your math notebook."
 
 # PDFs live in ./static/ and are served directly by Streamlit at app/static/<file>
@@ -528,7 +577,7 @@ for row_start in range(0, len(DAYS), CARDS_PER_ROW):
 
             hmwk_url = day.get("hmwk_url")
             if hmwk_url:
-                hmwk_label = day.get("hmwk_label", "HMWK (IXL.com)")
+                hmwk_label = day.get("hmwk_label", "HMWK (Khan Academy)")
                 hmwk_tooltip = HMWK_INSTRUCTIONS
                 hmwk_button_html = (
                     f'<a class="hmwk-button" href="{hmwk_url}" target="_blank" '
