@@ -197,15 +197,6 @@ st.markdown(
         line-height: 1.3;
         white-space: normal;
     }}
-    .calendar-note {{
-        background-color: #FFF4E5;
-        border-left: 6px solid {GOLD};
-        border-radius: 8px;
-        padding: 1rem 1.3rem;
-        margin-bottom: 1rem;
-        color: #7a5a1e;
-        font-size: 0.95rem;
-    }}
     </style>
     """,
     unsafe_allow_html=True,
@@ -225,8 +216,7 @@ st.markdown('<div class="big-title">Welcome, Families and Students!</div>', unsa
 st.markdown('<div class="sub-title">Professor Xavier Honablue, M.Ed.</div>', unsafe_allow_html=True)
 st.write(
     "Click any day below to open that day's full lesson, or open the Observer Guide PDF to view it "
-    "right in your browser. Use the school calendar underneath to match each lesson day to its actual "
-    "calendar date."
+    "right in your browser."
 )
 
 st.markdown("---")
@@ -639,19 +629,3 @@ for row_start in range(0, len(DAYS), CARDS_PER_ROW):
                 """,
                 unsafe_allow_html=True,
             )
-st.markdown("---")
-st.markdown("### 🗓️ School Calendar")
-
-CALENDAR_IMAGE_PATH = os.path.join(os.path.dirname(__file__), "assets", "school_calendar.png")
-if os.path.exists(CALENDAR_IMAGE_PATH):
-    st.image(CALENDAR_IMAGE_PATH, use_container_width=True, caption="Chandler Park Academy District Calendar")
-else:
-    st.markdown(
-        """
-        <div class="calendar-note">
-        📌 The official school calendar will appear here once it's added to this project
-        (<code>assets/school_calendar.png</code>).
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
