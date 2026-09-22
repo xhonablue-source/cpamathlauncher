@@ -7,7 +7,7 @@ from matplotlib.patches import Rectangle
 import streamlit as st
 
 # ============================================================
-# CHANDLER PARK ACADEMY — DAY FIVE (55 MINUTES)
+# GRADE 6 MATH — DAY FIVE (55 MINUTES)
 # "Area Is Multiplication"
 # i-Ready Classroom Mathematics Unit 1 · Lesson 1 · Session 1
 # Standalone version (no _common.py / launcher dependency)
@@ -632,6 +632,6 @@ with nav3:
     st.button("Next ➡", on_click=go_next, disabled=(slide == len(SLIDES) - 1), use_container_width=True, key="d5_next")
 
 st.markdown(
-    '<div class="credit"><a href="https://www.cognitivecloud.ai">www.cognitivecloud.ai</a> · Developed by Xavier Honablue, M.Ed · Chandler Park Academy</div>',
+    '<div class="credit"><a href="https://www.cognitivecloud.ai">www.cognitivecloud.ai</a> · Developed by Xavier Honablue, M.Ed</div>',
     unsafe_allow_html=True,
 )

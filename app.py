@@ -2,7 +2,7 @@ import os
 import streamlit as st
 
 st.set_page_config(
-    page_title="MathCraft CPA — Lesson Launcher",
+    page_title="MathCraft — Lesson Launcher",
     page_icon="🧮",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -205,8 +205,8 @@ st.markdown(
 st.markdown(
     """
     <div class="mc-banner">
-        <h1>🧮 MathCraft CPA</h1>
-        <p>Chandler Park Academy · Grade 6 Mathematics · Daily Lesson Launcher</p>
+        <h1>🧮 MathCraft</h1>
+        <p>Grade 6 Mathematics · Daily Lesson Launcher</p>
     </div>
     """,
     unsafe_allow_html=True,
