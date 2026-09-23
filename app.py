@@ -483,6 +483,10 @@ DAYS = [
         hmwk_label="HMWK: Earn 90% on Ratios With Tape Diagrams (Khan Academy)",
         worksheet_file="Day20_wksht.pdf",
         worksheet_label="Classwork Worksheet (Day 20 wksht)",
+        extra_worksheets=[
+            dict(file="Day20_Spot_the_Function.pdf",
+                 label="Spot the Function"),
+        ],
     ),
     dict(
         label="Day 21",
@@ -518,6 +522,9 @@ DAYS = [
 # A lesson dict may also include "worksheet_file" (a PDF in ./static/) to show
 # a 📝 Classwork Worksheet button — it renders above the HMWK button on that
 # day's card. Optionally add "worksheet_label" to customize its text.
+# For a day with more than one worksheet, add "extra_worksheets": a list of
+# dict(file=..., label=...) PDFs in ./static/ — each renders as another green
+# 📝 button right under the first worksheet.
 #
 # A lesson dict may also include "anchor_charts": a list of dict(file=..., label=...)
 # PDFs in ./static/. Each shows as a light-blue 📌 button under the Observer Guide.
@@ -574,6 +581,12 @@ for row_start in range(0, len(DAYS), CARDS_PER_ROW):
                 )
             else:
                 worksheet_button_html = ""
+            worksheet_button_html += "".join(
+                f'<a class="worksheet-button" href="app/static/{w["file"]}" target="_blank" '
+                f'rel="noopener noreferrer">📝 {w["label"]}</a>'
+                for w in day.get("extra_worksheets", [])
+                if os.path.exists(os.path.join(STATIC_DIR, w["file"]))
+            )
 
             hmwk_url = day.get("hmwk_url")
             if hmwk_url:
