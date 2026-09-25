@@ -511,10 +511,17 @@ DAYS = [
     dict(
         label="Day 23",
         title="Equivalent Ratios with Mixed Numbers",
-        desc="Ian rides 10 yd every 4 s. How long for 25 yd? No whole number takes 10 to 25, so the multiplier is 2½. Go through a smaller ratio or scale by a mixed number, catch Devon's 8½ error, and run a Recipe Lab where every order has a fractional scale factor.",
+        desc="Ian rides 10 yd every 4 s. How long for 25 yd? No whole number takes 10 to 25, so the multiplier is 2½. Go through a smaller ratio or scale by a mixed number, catch Devon's 8½ error, then cross between part-to-part and part-to-whole in real mixtures — lemonade, concrete, paint, paychecks — and a Recipe Lab.",
         page="https://cpamath6day23.streamlit.app/",
         hmwk_url="https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-ratios-prop-topic/cc-6th-equivalent-ratios/e/ratio_word_problems",
         hmwk_label="HMWK: Earn 90% on Equivalent Ratio Word Problems (Khan Academy)",
+        guide_file="Day23_Observer_Guide.pdf",
+        worksheet_file="Day23_wksht.pdf",
+        worksheet_label="Classwork Worksheet (Day 23 wksht)",
+        anchor_charts=[
+            dict(file="Anchor_Chart_Part_to_Part_and_Part_to_Whole.pdf",
+                 label="Anchor Chart: Part-to-Part & Part-to-Whole"),
+        ],
     ),
 ]
 
