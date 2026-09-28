@@ -264,6 +264,10 @@ st.markdown(
 
 st.markdown("### 📅 Lessons by Day")
 
+# Homework from Day 24 on is i-Ready (not Khan Academy). Students sign in to
+# i-Ready through Clever; this link lands on the i-Ready sign-in page.
+IREADY_URL = "https://login.i-ready.com/"
+
 DAYS = [
     dict(
         label="Day 1",
@@ -523,10 +527,61 @@ DAYS = [
                  label="Anchor Chart: Part-to-Part & Part-to-Whole"),
         ],
     ),
+    dict(
+        label="Day 24",
+        title="Equivalent Ratios on the Coordinate Plane",
+        desc="Every row of a ratio table is an ordered pair. Plot Maya's smoothies and the points line up on one straight line through (0, 0). Jordan's add-2 points fall off the line, two runners race on one graph, and a Graph Lab tests mystery points.",
+        page="https://cpamath6day24.streamlit.app/",
+        hmwk_url=IREADY_URL,
+        hmwk_label="HMWK: Pass your assigned i-Ready lesson — Equivalent Ratios (i-Ready)",
+        worksheet_file="Day24_wksht.pdf",
+        worksheet_label="Classwork Worksheet (Day 24 wksht)",
+    ),
+    dict(
+        label="Day 25",
+        title="Refine — Choose Your Model",
+        desc="Lesson 13 Refine, Part 1. Table, double number line, or graph — pick the fastest tool on purpose and prove it a second way. Refine Examples A–C, Kiara's, Marcus's and Tae's three wrong answers, and a Model Match-Up relay.",
+        page="https://cpamath6day25.streamlit.app/",
+        hmwk_url=IREADY_URL,
+        hmwk_label="HMWK: 20 min i-Ready My Path — pass one lesson (i-Ready)",
+        worksheet_file="Day25_wksht.pdf",
+        worksheet_label="Classwork Worksheet (Day 25 wksht)",
+    ),
+    dict(
+        label="Day 26",
+        title="Refine — Hidden Multipliers + i-Ready",
+        desc="Lesson 13 Refine, Part 2. Two-step word problems where the multiplier is hiding (buses, trail mix, a runner), prove-it-two-ways pairs, a check-in exit ticket — then a 30-minute i-Ready online lesson on equivalent ratios with a built-in timer and score log.",
+        page="https://cpamath6day26.streamlit.app/",
+        hmwk_url=IREADY_URL,
+        hmwk_label="HMWK: Finish & pass today's assigned i-Ready lesson (i-Ready)",
+        worksheet_file="Day26_wksht.pdf",
+        worksheet_label="Classwork Worksheet (Day 26 wksht)",
+    ),
+    dict(
+        label="Day 27",
+        title="Refine — Party Planner + i-Ready",
+        desc="Lesson 13 Refine, Part 3. Plan a party for 90 students where every item is a ratio — pizzas, punch, cookies, tables, and a pizza budget that rounds up. Tiered stations, then a second 30-minute i-Ready online lesson on solving problems with equivalent ratios.",
+        page="https://cpamath6day27.streamlit.app/",
+        hmwk_url=IREADY_URL,
+        hmwk_label="HMWK: Finish & pass today's assigned i-Ready lesson (i-Ready)",
+        worksheet_file="Day27_wksht.pdf",
+        worksheet_label="Classwork Worksheet (Day 27 wksht)",
+    ),
+    dict(
+        label="Day 28",
+        title="Lesson 13 Review & Quiz",
+        desc="Quiz day for Find Equivalent Ratios. One ratio four ways, the quiz checklist, the i-Ready Lesson 13 Quiz with a 25-minute timer, Fix-It corrections that match every quiz skill, and a preview of Lesson 14: part-to-part and part-to-whole.",
+        page="https://cpamath6day28.streamlit.app/",
+        hmwk_url=IREADY_URL,
+        hmwk_label="HMWK: 30 min i-Ready My Path over the weekend (i-Ready)",
+        worksheet_file="Day28_wksht.pdf",
+        worksheet_label="Review & Fix-It Sheet (Day 28)",
+    ),
 ]
 
 # Starting with Day 5 (the first grade-level content day), each lesson dict above
-# should include an "hmwk_url" pointing to the matching Khan Academy exercise so a
+# should include an "hmwk_url" so a 📝 HMWK button appears. Days 5–23 point to the matching
+# Khan Academy exercise; from Day 24 on, homework is i-Ready (IREADY_URL) so a
 # 📝 HMWK button appears on its card. Optionally add "hmwk_label" to state the
 # target (e.g. "HMWK: Earn 90% on Area of Triangles (Khan Academy)") instead
 # of the generic "HMWK (Khan Academy)" text. Students reach Khan Academy
@@ -605,7 +660,7 @@ for row_start in range(0, len(DAYS), CARDS_PER_ROW):
 
             hmwk_url = day.get("hmwk_url")
             if hmwk_url:
-                hmwk_label = day.get("hmwk_label", "HMWK (Khan Academy)")
+                hmwk_label = day.get("hmwk_label", "HMWK (i-Ready)")
                 hmwk_tooltip = HMWK_INSTRUCTIONS
                 hmwk_button_html = (
                     f'<a class="hmwk-button" href="{hmwk_url}" target="_blank" '
